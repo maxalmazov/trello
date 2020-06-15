@@ -1,0 +1,14 @@
+FROM node:latest
+
+ENV DEBIAN_FRONTEND noninteractive
+
+RUN apt-get update
+RUN apt-get install -y bash nano
+
+# add `/usr/src/app/node_modules/.bin` to $PATH
+ENV PATH /usr/src/app/node_modules/.bin:$PATH
+
+# install and cache app dependencies
+ADD package*.json /var/www/html/
+ADD *.lock /var/www/html/
+RUN cd /var/www/html && yarn install --silent

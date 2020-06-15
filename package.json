@@ -1,0 +1,103 @@
+{
+  "name": "react-self-web",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "@babel/polyfill": "^7.2.5",
+    "@material-ui/core": "4.2.1",
+    "@material-ui/icons": "4.2.1",
+    "@rescripts/cli": "^0.0.10",
+    "@rescripts/rescript-env": "^0.0.10",
+    "@types/jest": "^24.9.1",
+    "@types/node": "^11.11.3",
+    "@types/query-string": "5",
+    "@types/react": "^16.8.8",
+    "@types/react-click-outside": "^3.0.2",
+    "@types/react-dom": "^16.9.8",
+    "@types/react-helmet": "^5.0.16",
+    "@types/react-redux": "^6.0.11",
+    "@types/react-router-dom": "^4.3.5",
+    "@types/redux-devtools-extension": "^2.13.2",
+    "@types/redux-thunk": "^2.1.0",
+    "@types/styled-components": "^4.4.3",
+    "@types/swiper": "^4.4.10",
+    "@types/webfontloader": "^1.6.32",
+    "@types/yup": "^0.26.37",
+    "axios": "^0.18.1",
+    "body-scroll-lock": "^2.7.1",
+    "connected-react-router": "^6.8.0",
+    "idempotent-babel-polyfill": "^7.4.4",
+    "lint-staged": "^8.2.1",
+    "prettier": "^1.19.1",
+    "query-string": "5",
+    "react": "^16.13.1",
+    "react-click-outside": "^3.0.1",
+    "react-dom": "^16.13.1",
+    "react-fastclick": "^3.0.2",
+    "react-helmet": "^5.2.1",
+    "react-id-swiper": "^1.6.8",
+    "react-jss": "^8.6.1",
+    "react-redux": "~5.0.7",
+    "react-router": "^4.3.1",
+    "react-router-dom": "^4.3.1",
+    "react-scripts": "^2.1.8",
+    "recompose": "^0.30.0",
+    "redux": "^4.0.1",
+    "redux-thunk": "^2.3.0",
+    "styled-components": "^4.4.1",
+    "styled-normalize": "^8.0.7",
+    "typesafe-actions": "^2.1.1",
+    "typescript": "^3.9.5",
+    "universal-cookie": "^3.0.4",
+    "webfontloader": "^1.6.28",
+    "yup": "^0.26.6"
+  },
+  "devDependencies": {
+    "@typescript-eslint/eslint-plugin": "^1.13.0",
+    "@typescript-eslint/parser": "^1.13.0",
+    "babel-plugin-inline-react-svg": "^1.1.1",
+    "babel-preset-react-app": "^7.0.2",
+    "eslint-config-prettier": "^4.3.0",
+    "eslint-plugin-prettier": "^3.1.4",
+    "npm-run-all": "^4.1.5",
+    "stylelint": "^9.10.1",
+    "stylelint-config-recommended": "^2.1.0",
+    "stylelint-config-styled-components": "^0.1.1",
+    "stylelint-processor-styled-components": "^1.10.0",
+    "tslint": "^5.20.1"
+  },
+  "scripts": {
+    "start": "rescripts start",
+    "start:dev": "NODE_ENV=development yarn install && yarn start",
+    "start:prod": "NODE_ENV=production yarn clean && yarn build && node server/app.js",
+    "build": "rescripts build",
+    "test:lint:js": "eslint src/ --ext=js --ext=jsx --ext=ts --ext=tsx --fix",
+    "test:lint:styled": "stylelint --config=.stylelintrc '**/*.styled.*'",
+    "test:lint": "run-s test:lint:**",
+    "test:unit": "rescripts test --passWithNoTests",
+    "test": "run-s test:**",
+    "clean": "rm -rf build",
+    "precommit": "lint-staged"
+  },
+  "lint-staged": {
+    "src/**/*.{js,jsx,ts,tsx,json}": [
+      "eslint src/ --ext=js --ext=jsx --ext=ts --ext=tsx --fix",
+      "prettier --config .prettierrc --write",
+      "git add ."
+    ],
+    "src/**/*.styled.*": [
+      "stylelint --config=.stylelintrc --fix",
+      "prettier --config .prettierrc --write",
+      "git add ."
+    ]
+  },
+  "browserslist": [
+    ">0.2%",
+    "not dead",
+    "not ie <= 11",
+    "not op_mini all"
+  ],
+  "rescripts": [
+    "env"
+  ]
+}
