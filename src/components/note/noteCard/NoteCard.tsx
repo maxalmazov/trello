@@ -8,7 +8,19 @@ import { Note } from '../../../store/note/types';
 import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
 import { NoteCardWrapper } from './NoteCard.styled';
-import { Collapse, FormControlLabel, Link, Switch } from '@material-ui/core';
+import {
+  Button,
+  Chip,
+  Collapse,
+  Divider,
+  ExpansionPanel,
+  ExpansionPanelActions,
+  ExpansionPanelDetails,
+  ExpansionPanelSummary,
+  FormControlLabel,
+  Link,
+  Switch
+} from '@material-ui/core';
 
 const NoteCard = (note: Note) => {
   const PREVIEW_TEXT_LENGTH = 350;
@@ -20,16 +32,12 @@ const NoteCard = (note: Note) => {
 
   const renderNoteDescription = (description: string) => {
     if (description.length > PREVIEW_TEXT_LENGTH) {
-      const descFirstPart = description.substring(0, PREVIEW_TEXT_LENGTH);
-      const descLastPart = description.substring(PREVIEW_TEXT_LENGTH);
-
       return (
         <>
-          {/*<div hidden={checked}>{descFirstPart}</div>*/}
-          <Link hidden={checked} onClick={handleChange}>...show more</Link>
-          <Collapse in={checked} collapsedHeight={'20'}>
-            <div>{description}</div>
+          <Collapse in={checked} collapsedHeight={180}>
+            {description}
           </Collapse>
+          <Link onClick={handleChange}>{!checked ? '...read more' : 'collapse↑'}</Link>
         </>
       );
     }
@@ -39,10 +47,8 @@ const NoteCard = (note: Note) => {
 
   return (
     <NoteCardWrapper>
-
       {renderNoteDescription(note.description)}
-
-      <NoteCardActions />
+      <NoteCardActions note={note}/>
     </NoteCardWrapper>
   );
 };
