@@ -1,23 +1,23 @@
 import React, { useEffect, useCallback } from 'react';
 import { BoardWrapper } from './Board.styled';
 import Grid from '@material-ui/core/Grid';
-import NoteList from '../../components/NoteList';
+import NoteList from '../../components/note/noteList/NoteList';
+import { NotesSection } from '../../store/note/types';
 
 export interface Props {
-
+  notesList: NotesSection[]
 }
 
-const HomeComponent = (props: Props) => {
-  console.log(props);
+const HomeComponent: React.FC<Props> = ({ notesList }) => {
   return (
     <BoardWrapper>
       <Grid
-        container
-        direction="row"
-        justify="flex-start"
-        alignItems="flex-start"
+        container={true}
+        direction={'row'}
+        justify={'flex-start'}
+        alignItems={'flex-start'}
       >
-        <NoteList/>
+        {notesList && notesList.map((notesSection: NotesSection) => <NoteList key={'notesSectionId' + notesSection.id} {...notesSection}/>)}
       </Grid>
     </BoardWrapper>
   );

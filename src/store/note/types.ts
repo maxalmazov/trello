@@ -5,7 +5,10 @@ export interface State {
 export interface Note {
   id: number;
   title: string;
-  description: string|null;
+  description: string;
+  dueTo: Date
+  isComplete: boolean;
+  asset: string|null;
 }
 
 export interface NotesSection {

@@ -49,13 +49,12 @@ const TrelloCardActions = () => {
         </Button>
 
         <Badge
-          badgeContent={'comment'}
+          badgeContent={'1'}
           color={'error'}
         >
           <ChatBubbleOutline className={classes.leftIcon} />
         </Badge>
-
-<FormatAlignLeft className={classes.leftIcon} />
+      <FormatAlignLeft className={classes.leftIcon} />
       <Button
         size={'small'}
         variant={'contained'}

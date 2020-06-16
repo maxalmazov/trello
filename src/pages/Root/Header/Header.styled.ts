@@ -2,7 +2,7 @@ import styled, { media, css } from '../../../theme';
 
 export const Header = styled.section`
   width: 100vw;
-  background-color: #b7b7b7;
+  background-color: #9a9b94;
   height: 80px;
   display: flex;
   align-items: center;
