@@ -1,6 +1,7 @@
 /* eslint-disable @typescript-eslint/no-object-literal-type-assertion, @typescript-eslint/no-explicit-any */
 
 import * as styledComponents from 'styled-components';
+import { ThemedCssFunction } from 'styled-components';
 
 export interface ThemeInterface {
   primaryColor?: string;

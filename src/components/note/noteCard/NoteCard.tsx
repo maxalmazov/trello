@@ -1,26 +1,9 @@
 import React , { useState } from 'react';
-import Card from "@material-ui/core/Card";
-import { makeStyles, fade } from "@material-ui/core/styles";
-
+import { Collapse, Link, } from '@material-ui/core';
 
 import NoteCardActions from './NoteCardActions';
 import { Note } from '../../../store/note/types';
-import Typography from '@material-ui/core/Typography';
-import Box from '@material-ui/core/Box';
 import { NoteCardWrapper } from './NoteCard.styled';
-import {
-  Button,
-  Chip,
-  Collapse,
-  Divider,
-  ExpansionPanel,
-  ExpansionPanelActions,
-  ExpansionPanelDetails,
-  ExpansionPanelSummary,
-  FormControlLabel,
-  Link,
-  Switch
-} from '@material-ui/core';
 
 const NoteCard = (note: Note) => {
   const PREVIEW_TEXT_LENGTH = 350;

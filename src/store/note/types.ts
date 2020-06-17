@@ -19,4 +19,6 @@ export interface NotesSection {
 
 export enum ActionTypes {
   GET_NOTES_LIST = '@@notes/GET_NOTES_LIST',
+  GET_NOTES_LIST_SUCCESS = '@@notes/GET_NOTES_LIST_SUCCESS',
+  ADD_NOTE_SECTION_SUCCESS = '@@notes/ADD_NOTE_SECTION_SUCCESS',
 }

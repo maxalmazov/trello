@@ -1,15 +1,27 @@
-import React, { useEffect, useCallback } from 'react';
+import React, { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+
 import { BoardWrapper } from './Board.styled';
 import Grid from '@material-ui/core/Grid';
 import NoteList from '../../components/note/noteList/NoteList';
 import { NotesSection } from '../../store/note/types';
+import { loadNotes } from '../../store/note/actions';
+import { getNotesList } from '../../store/note/selectors';
 
 export interface Props {
-  notesList: NotesSection[]
+  // notesList: NotesSection[]
 }
 
-const HomeComponent: React.FC<Props> = ({ notesList }) => {
+const HomeComponent: React.FC<Props> = (/*{ notesList }*/) => {
+  const dispatch = useDispatch();
+  const notesList = useSelector(getNotesList);
+
+  useEffect(() => {
+    dispatch(loadNotes())
+  }, []);
+  console.log(notesList);
   return (
+
     <BoardWrapper>
       <Grid
         container={true}

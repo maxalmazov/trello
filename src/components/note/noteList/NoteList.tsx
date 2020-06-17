@@ -17,8 +17,6 @@ import {
 } from './NoteList.styled';
 
 const NoteList = (notesSection: NotesSection) => {
-  console.log(notesSection);
-
   return (
     <NoteListWrapper>
       <NoteListHeaderWrapper>

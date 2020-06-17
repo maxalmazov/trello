@@ -1,5 +1,5 @@
 import React from 'react';
-import { RouteComponentProps } from 'react-router';
+import { RouteComponentProps } from 'react-router-dom';
 
 import { GlobalStyles } from '../../theme';
 import { Wrapper } from './Root.styled';

@@ -1,7 +1,7 @@
 import styled, { media, css } from '../../../theme';
 import { Link } from 'react-router-dom';
 
-export const FooterContainerWrapper = styled.footer<{ isNotMainPage: boolean }>`
+export const FooterContainerWrapper = styled.footer`
   width: 100%;
   margin-top: auto;
   background-color: #e6e0e0;
@@ -41,7 +41,7 @@ export const FooterCopyright = styled.div`
   font-size: 14px;
   line-height: 18px;
   text-align: center;
-  color: ${props => props.theme.darkGrey};
+  color: #3d3d3d;
   padding-bottom: 24px;
 `;
 
@@ -66,7 +66,7 @@ export const FooterNavItem = styled.li`
   display: flex;
   flex-direction: row;
   padding-right: 15px;
-  color: ${props => props.theme.lightGrey};
+  color: #c6c9ce;
 `;
 
 export const FooterNavLink = styled(Link)`
@@ -74,9 +74,9 @@ export const FooterNavLink = styled(Link)`
   font-size: 20px;
   line-height: 27px;
   text-align: center;
-  color: ${props => props.theme.darkGrey};
+  color: #3d3d3d;
 
   &:hover {
-    color: ${props => props.theme.blue};
+    color: #165fef;
   }
 `;

@@ -7,4 +7,4 @@ const mapStateToProps = (state: StoreState) => ({
   ...state.notes,
 });
 
-export default connect(mapStateToProps)(Component);
+export default connect()(Component);
