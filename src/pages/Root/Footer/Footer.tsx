@@ -31,7 +31,7 @@ const Footer: React.SFC<{}> = () => {
           </FooterNav>
         </FooterTop>
         <FooterBottom>
-          <FooterCopyright>{`© ${new Date().getFullYear()} BoardLikeTrello Self React Education. All rights reserved`}</FooterCopyright>
+          <FooterCopyright>{`© ${new Date().getFullYear()} BoardLikeTrello. Self React Education. All rights reserved`}</FooterCopyright>
         </FooterBottom>
       </FooterContainer>
     </FooterContainerWrapper>

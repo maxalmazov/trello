@@ -15,7 +15,44 @@ import { Add } from '@material-ui/icons';
 import { addNotesSection } from '../../../store/note/actions';
 import { AddNoteListFormWrapper } from './AddNoteListForm.styled';
 
-const AddNoteSection = ({handleSubmit, values}: any) => {
+
+
+
+
+
+
+const AddNoteSectionForm = ({handleSubmit, values}: any) => {
+  return (
+    <AddNoteListFormWrapper onSubmit={handleSubmit}>
+      <DialogTitle id={'form-dialog-title'}>Add new list of notes</DialogTitle>
+      <DialogContent>
+        <Field
+          autoFocus={true}
+          margin={'dense'}
+          id={'title'}
+          label={'Title'}
+          type={'string'}
+          value={values.title}
+          fullWidth={true}
+        />
+      </DialogContent>
+      <DialogActions>
+        <Button onClick={handleClose} color={'primary'}>
+          Cancel
+        </Button>
+        <Button type={'submit'} color={'primary'}>
+          Add
+        </Button>
+      </DialogActions>
+    </AddNoteListFormWrapper>
+  );
+};
+
+
+
+
+
+const AddNoteSection = () => {
   const dispatch = useDispatch();
   const [open, setOpen] = React.useState(false);
 
@@ -42,32 +79,7 @@ const AddNoteSection = ({handleSubmit, values}: any) => {
     }));
   };
 
-  const AddNoteSectionForm = () => {
-    return (
-      <AddNoteListFormWrapper onSubmit={handleSubmit}>
-        <DialogTitle id={'form-dialog-title'}>Add new list of notes</DialogTitle>
-        <DialogContent>
-          <Field
-            autoFocus={true}
-            margin={'dense'}
-            id={'title'}
-            label={'Title'}
-            type={'string'}
-            value={values.title}
-            fullWidth={true}
-          />
-        </DialogContent>
-        <DialogActions>
-          <Button onClick={handleClose} color={'primary'}>
-            Cancel
-          </Button>
-          <Button type={'submit'} color={'primary'}>
-            Add
-          </Button>
-        </DialogActions>
-      </AddNoteListFormWrapper>
-    );
-  };
+
 
   return (
     <>
