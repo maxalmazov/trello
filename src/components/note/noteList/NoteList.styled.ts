@@ -7,6 +7,7 @@ import {
 } from '@material-ui/core';
 
 export const NoteListWrapper = styled(Grid)`
+  min-width: 338px;
   margin: 5px;
   padding: 8px;
   background: #dfe1e6;

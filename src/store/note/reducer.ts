@@ -27,10 +27,7 @@ const reducer: Reducer<State, Action> = (state: State = initialState, action: Ac
       };
 
     case ActionTypes.ADD_NOTE_SECTION_SUCCESS:
-      console.log(state);
-      console.log(action);
       state.notesList.push(action.payload);
-      console.log(state);
 
       return {
         ...state,

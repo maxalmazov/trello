@@ -4,7 +4,6 @@ import {
   getNotesListSuccess
 } from './actionCreators'
 import { NotesSection } from './types';
-import { initialData } from '../../initialData';
 import controllers from '../../controllers';
 
 export const loadNotes = () => (dispatch: any) => {
@@ -26,7 +25,4 @@ export const addNotesSection = (newNoteSection: NotesSection) => async (dispatch
   } catch (error) {
     console.log(error);
   }
-
-
-  // const newNoteList = localStorage.setItem()
 };

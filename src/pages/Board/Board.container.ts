@@ -4,7 +4,7 @@ import Component from './Board';
 import { StoreState } from '../../store/types';
 
 const mapStateToProps = (state: StoreState) => ({
-  ...state.notes,
+  ...state.notes.notesList,
 });
 
-export default connect()(Component);
+export default connect(mapStateToProps)(Component);
