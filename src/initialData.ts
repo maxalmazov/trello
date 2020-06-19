@@ -88,5 +88,8 @@ export const initialData = {
     //     }
     //   ]
     // }
-  ]
+  ],
+  lastNotesId: 20, //while we are storing notes in local storage, it will be removed after connecting backend part
+  lastNotesListId: 10, //while we are storing notes in local storage, it will be removed after connecting backend part
+
 };

@@ -3,7 +3,7 @@ import {
   getNotesList,
   getNotesListSuccess
 } from './actionCreators'
-import { NotesSection } from './types';
+import { NewNotesSection } from './types';
 import controllers from '../../controllers';
 
 export const loadNotes = () => (dispatch: any) => {
@@ -18,10 +18,10 @@ export const loadNotes = () => (dispatch: any) => {
   }
 };
 
-export const addNotesSection = (newNoteSection: NotesSection) => async (dispatch: any) => {
+export const addNotesSection = (newNoteSection: NewNotesSection) => async (dispatch: any) => {
   try {
-    controllers.notes.addNotesSection(newNoteSection);
-    dispatch(addNotesSectionSuccess(newNoteSection));
+    const newSection = controllers.notes.addNotesSection(newNoteSection);
+    dispatch(addNotesSectionSuccess(newSection));
   } catch (error) {
     console.log(error);
   }

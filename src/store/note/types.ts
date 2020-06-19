@@ -1,5 +1,7 @@
 export interface State {
   notesList: NotesSection[];
+  lastNotesId: number;
+  lastNotesListId: number;
 }
 
 export interface Note {
@@ -13,6 +15,11 @@ export interface Note {
 
 export interface NotesSection {
   id: number;
+  title: string;
+  notes: Note[];
+}
+
+export interface NewNotesSection {
   title: string;
   notes: Note[];
 }

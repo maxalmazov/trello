@@ -5,7 +5,9 @@ import { State, ActionTypes } from './types';
 import * as actions from './actionCreators';
 
 const initialState = {
-  notesList: []
+  notesList: [],
+  lastNotesId: 0,
+  lastNotesListId: 0,
 };
 
 export type Action = ActionType<typeof actions>;
