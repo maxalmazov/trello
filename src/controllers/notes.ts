@@ -3,7 +3,7 @@
 import { initialData } from '../initialData';
 import { NewNotesSection, State } from '../store/note/types';
 
-export const getNotes: any = () => {
+export const getNotes = () => {
   if (localStorage.getItem('notes') === null) {
     localStorage.setItem('notes', JSON.stringify(initialData));
   }
@@ -11,7 +11,7 @@ export const getNotes: any = () => {
   return JSON.parse(localStorage.getItem('notes') ?? '{}');
 };
 
-export const addNotesSection: any = (notesSection: NewNotesSection) => {
+export const addNotesSection = (notesSection: NewNotesSection) => {
   const notes: State = JSON.parse(localStorage.getItem('notes') ?? '{}');
 
   const newNotesSection = {
@@ -19,15 +19,25 @@ export const addNotesSection: any = (notesSection: NewNotesSection) => {
     ...notesSection,
   };
 
-  notes.notesList.push(newNotesSection);
+  notes.notesList[String(notes.lastNotesListId + 1)] = newNotesSection;
   notes.lastNotesListId++;
 
-  // localStorage.setItem('notes', JSON.stringify(notes));
+  localStorage.setItem('notes', JSON.stringify(notes));
 
   return newNotesSection;
 };
 
+export const removeNotesSection = (notesSectionId: number) => {
+  const notes: State = JSON.parse(localStorage.getItem('notes') ?? '{}');
+
+  delete(notes.notesList[String(notesSectionId)]);
+  localStorage.setItem('notes', JSON.stringify(notes));
+
+  return notes;
+};
+
 export default {
   getNotes,
-  addNotesSection
+  addNotesSection,
+  removeNotesSection,
 }

@@ -1,5 +1,5 @@
 export interface State {
-  notesList: NotesSection[];
+  notesList: {[notesListId: string]: NotesSection};
   lastNotesId: number;
   lastNotesListId: number;
 }
@@ -8,7 +8,7 @@ export interface Note {
   id: number;
   title: string;
   description: string;
-  dueTo: Date
+  dueTo: string;
   isComplete: boolean;
   asset: string|null;
 }
@@ -28,4 +28,5 @@ export enum ActionTypes {
   GET_NOTES_LIST = '@@notes/GET_NOTES_LIST',
   GET_NOTES_LIST_SUCCESS = '@@notes/GET_NOTES_LIST_SUCCESS',
   ADD_NOTE_SECTION_SUCCESS = '@@notes/ADD_NOTE_SECTION_SUCCESS',
+  REMOVE_NOTE_SECTION_SUCCESS = '@@notes/REMOVE_NOTE_SECTION_SUCCESS',
 }

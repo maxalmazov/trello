@@ -1,9 +1,15 @@
 import { connect } from 'react-redux';
 
 import Component from './Board';
-import { StoreState } from '../../store/types';
+import { NotesSection } from '../../store/note/types';
 
-const mapStateToProps = (state: StoreState) => ({
+interface State {
+ [notesListsId: string]: {
+   notesList: NotesSection
+ };
+}
+
+const mapStateToProps = (state: State) => ({
   ...state.notes.notesList,
 });
 

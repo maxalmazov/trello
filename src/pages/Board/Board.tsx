@@ -6,7 +6,7 @@ import NoteList from '../../components/note/noteList/NoteList';
 import { NotesSection } from '../../store/note/types';
 
 export interface Props {
-  notesList: NotesSection[]
+  notesList: {[notesListId: string]: NotesSection}
 }
 
 const BoardComponent: React.FC<Props> = ({notesList}) => {
@@ -18,7 +18,7 @@ const BoardComponent: React.FC<Props> = ({notesList}) => {
         justify={'flex-start'}
         alignItems={'flex-start'}
       >
-        {notesList && notesList.map((notesSection: NotesSection) => <NoteList key={'notesSectionId' + notesSection.id} {...notesSection}/>)}
+        {notesList && Object.values(notesList).map((notesSection: NotesSection) => <NoteList key={'notesSectionId' + notesSection.id} {...notesSection}/>)}
       </Grid>
     </BoardWrapper>
   );

@@ -5,7 +5,7 @@ import { State, ActionTypes } from './types';
 import * as actions from './actionCreators';
 
 const initialState = {
-  notesList: [],
+  notesList: {},
   lastNotesId: 0,
   lastNotesListId: 0,
 };
@@ -29,12 +29,20 @@ const reducer: Reducer<State, Action> = (state: State = initialState, action: Ac
       };
 
     case ActionTypes.ADD_NOTE_SECTION_SUCCESS:
-      state.notesList.push(action.payload);
+      state.lastNotesListId = action.payload.id;
+      state.notesList[String(action.payload.id)] = action.payload;
 
       return {
         ...state,
         loading: false,
         loaded: true,
+      };
+
+    case ActionTypes.REMOVE_NOTE_SECTION_SUCCESS:
+      state.notesList = action.payload.notesList;
+
+      return {
+        ...state,
       };
 
     default:

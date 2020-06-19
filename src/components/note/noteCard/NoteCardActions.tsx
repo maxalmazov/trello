@@ -1,12 +1,16 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Checkbox, FormControlLabel, Typography } from '@material-ui/core';
 import { CardActionWrapper } from './NoteCardAction.styled';
+import { Note } from '../../../store/note/types';
 
-const NoteCardActions = (props: any) => {
+interface NoteCardActionsProps {
+  note: Note
+}
+const NoteCardActions = ({ note }: NoteCardActionsProps) => {
   return (
     <CardActionWrapper >
       <Typography variant={'caption'}>
-        Due to: {props.note.dueTo.toDateString}
+        Due to: {new Date(note.dueTo).toLocaleDateString()}
       </Typography>
       {/*Warning: Failed prop type: Material-UI: You are providing an onClick event listener to a child of a button element.*/}
       {/*Firefox will never trigger the event.*/}
