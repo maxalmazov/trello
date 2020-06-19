@@ -5,12 +5,12 @@ import MoreVertIcon from '@material-ui/icons/MoreVert';
 import NoteCard from '../noteCard/NoteCard';
 import { Note, NotesSection } from '../../../store/note/types';
 import {
-  NewNoteButton,
   NoteListHeader,
   NoteListHeaderWrapper,
   NoteListWrapper,
 } from './NoteList.styled';
 import NoteListAction from './NoteListAction';
+import AddNoteCard from '../noteCard/AddNoteCard';
 
 const NoteList = (notesSection: NotesSection) => {
   return (
@@ -22,9 +22,7 @@ const NoteList = (notesSection: NotesSection) => {
         <NoteListAction notesSectionId={notesSection.id}/>
       </NoteListHeaderWrapper>
         {notesSection.notes && notesSection.notes.map((note:Note) => <NoteCard key={'noteCardId' + note.id} {...note}/>)}
-      <NewNoteButton >
-        + Add another card
-      </NewNoteButton>
+        <AddNoteCard />
     </NoteListWrapper>
   );
 };

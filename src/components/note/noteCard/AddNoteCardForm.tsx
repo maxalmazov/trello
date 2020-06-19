@@ -2,20 +2,21 @@ import React from 'react';
 import { useDispatch } from 'react-redux';
 import { useFormik } from 'formik';
 import {
-  Button,
+  Button, Checkbox,
   DialogActions,
   DialogContent,
-  DialogTitle,
+  DialogTitle, MenuItem,
   TextField,
 } from '@material-ui/core';
 import { addNotesSection } from '../../../store/note/actions';
-import { AddNoteListFormWrapper } from './AddNoteListForm.styled';
+import { AddNoteCardFormWrapper } from './AddNoteCardForm.styled';
+import ColorInput from './ColorInput'
 
 interface NewNoteSectionData {
   title: string;
 }
 
-const AddNoteSectionForm = ({ handleClose }: any) => {
+const AddNoteCardForm = ({ handleClose }: any) => {
   const dispatch = useDispatch();
 
   const addNoteList = (newNoteSectionData: NewNoteSectionData) => {
@@ -28,7 +29,9 @@ const AddNoteSectionForm = ({ handleClose }: any) => {
 
   const formik = useFormik({
     initialValues: {
-      title: ''
+      title: '',
+      description: '',
+      color: '#ffffff'
     },
     validate: (newNoteSectionData: NewNoteSectionData) => {
       const errors = {};
@@ -41,9 +44,8 @@ const AddNoteSectionForm = ({ handleClose }: any) => {
     onSubmit: (newNoteSectionData: NewNoteSectionData) => addNoteList(newNoteSectionData),
   });
 
-
   return (
-    <AddNoteListFormWrapper onSubmit={formik.handleSubmit}>
+    <AddNoteCardFormWrapper onSubmit={formik.handleSubmit}>
       <DialogTitle id={'form-dialog-title'}>Add new list of notes</DialogTitle>
       <DialogContent>
         <TextField
@@ -57,6 +59,7 @@ const AddNoteSectionForm = ({ handleClose }: any) => {
           error={Boolean(formik.errors.title)}
           helperText={formik.errors.title}
         />
+        <ColorInput/>
       </DialogContent>
       <DialogActions>
         <Button onClick={handleClose} color={'primary'}>
@@ -66,8 +69,8 @@ const AddNoteSectionForm = ({ handleClose }: any) => {
           Add
         </Button>
       </DialogActions>
-    </AddNoteListFormWrapper>
+    </AddNoteCardFormWrapper>
   );
 };
 
-export default AddNoteSectionForm;
+export default AddNoteCardForm;

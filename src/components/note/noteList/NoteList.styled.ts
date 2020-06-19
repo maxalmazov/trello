@@ -38,6 +38,8 @@ export const NoteListHeaderActions = styled(Typography)`
 `;
 
 export const NewNoteButton = styled(Box)`
+  display: flex;
+  //justify-content: space-between;
   flex-grow: 1;
   cursor: pointer;
   padding: 8px;
