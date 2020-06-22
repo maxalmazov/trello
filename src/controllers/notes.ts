@@ -1,7 +1,7 @@
 // make API calls here
 
 import { initialData } from '../initialData';
-import { NewNotesSection, State } from '../store/note/types';
+import { NewNote, NewNotesSection, State } from '../store/note/types';
 
 export const getNotes = () => {
   if (localStorage.getItem('notes') === null) {
@@ -36,8 +36,18 @@ export const removeNotesSection = (notesSectionId: number) => {
   return notes;
 };
 
+export const addNote = (note: NewNote) => {
+  console.log('Controller try to save new note');
+};
+
+export const removeNote = (note: number) => {
+
+};
+
 export default {
   getNotes,
   addNotesSection,
   removeNotesSection,
+  addNote,
+  removeNote,
 }

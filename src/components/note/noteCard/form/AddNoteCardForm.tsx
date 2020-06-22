@@ -2,42 +2,37 @@ import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { useFormik } from 'formik';
 import {
-  Button, Checkbox,
+  Button,
   DialogActions,
   DialogContent,
-  DialogTitle, MenuItem,
+  DialogTitle,
   TextField,
+  Checkbox, FormControlLabel
 } from '@material-ui/core';
-import { addNotesSection } from '../../../../store/note/actions';
+import { addNote } from '../../../../store/note/actions';
 import { AddNoteCardFormWrapper } from './AddNoteCardForm.styled';
 import ColorInput from './ColorInput'
 import { TextFieldInputWrapper } from './TextInput.styled';
-
-interface NewNoteData {
-  title: string;
-  description: string;
-}
+import { NewNote } from '../../../../store/note/types';
 
 const AddNoteCardForm = ({ handleClose }: any) => {
   const dispatch = useDispatch();
   const [selectedColor, setSelectedColor] = useState('#ffffff');
 
-  const addNoteList = (newNoteData: NewNoteData) => {
-    console.log(newNoteData);
+  const addNoteList = (newNoteData: NewNote) => {
     handleClose();
-    // dispatch(addNotesSection({
-    //   title: newNoteSectionData.title,
-    //   notes: [],
-    // }));
+    dispatch(addNote(newNoteData));
   };
 
   const formik = useFormik({
     initialValues: {
       title: '',
       description: '',
-      color: selectedColor
+      color: selectedColor,
+      dueTo: '2020-06-22', // TODO
+      isComplete: false,
     },
-    validate: (newNoteSectionData: NewNoteData) => {
+    validate: (newNoteSectionData: NewNote) => {
       const errors = {};
 
       if (newNoteSectionData.title.length < 1) {
@@ -50,7 +45,7 @@ const AddNoteCardForm = ({ handleClose }: any) => {
 
       return errors;
     },
-    onSubmit: (newNoteSectionData: NewNoteData) => {
+    onSubmit: (newNoteSectionData: NewNote) => {
       Object.assign(newNoteSectionData, {color: selectedColor});
 
       return addNoteList(newNoteSectionData)
@@ -90,11 +85,38 @@ const AddNoteCardForm = ({ handleClose }: any) => {
             helperText={formik.errors.description}
           />
         </TextFieldInputWrapper>
-        <ColorInput
-          selectedColor={selectedColor}
-          setSelectedColor={setSelectedColor}
-          value={selectedColor}
-        />
+        <TextFieldInputWrapper>
+          <TextField
+            autoFocus={false}
+            id={'dueTo'}
+            label={'Due to'}
+            type={'date'}
+            value={formik.values.dueTo}
+            onChange={formik.handleChange}
+            fullWidth={true}
+            error={Boolean(formik.errors.dueTo)}
+            helperText={formik.errors.dueTo}
+          />
+        </TextFieldInputWrapper>
+        <TextFieldInputWrapper>
+          <ColorInput
+            selectedColor={selectedColor}
+            setSelectedColor={setSelectedColor}
+            value={selectedColor}
+          />
+          <FormControlLabel
+            control={
+              <Checkbox
+                id={'isComplete'}
+                checked={formik.values.isComplete}
+                onChange={formik.handleChange}
+              />
+            }
+            label={'Is complete'}
+            labelPlacement={'start'}
+          />
+
+        </TextFieldInputWrapper>
       </DialogContent>
       <DialogActions>
         <Button onClick={handleClose} color={'primary'}>

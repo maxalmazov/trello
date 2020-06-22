@@ -10,7 +10,6 @@ export interface Note {
   description: string;
   dueTo: string;
   isComplete: boolean;
-  asset: string|null;
   color: string;
 }
 
@@ -25,9 +24,19 @@ export interface NewNotesSection {
   notes: Note[];
 }
 
+export interface NewNote {
+  title: string;
+  description: string;
+  dueTo: string;
+  isComplete: boolean;
+  color: string;
+}
+
 export enum ActionTypes {
   GET_NOTES_LIST = '@@notes/GET_NOTES_LIST',
   GET_NOTES_LIST_SUCCESS = '@@notes/GET_NOTES_LIST_SUCCESS',
   ADD_NOTE_SECTION_SUCCESS = '@@notes/ADD_NOTE_SECTION_SUCCESS',
   REMOVE_NOTE_SECTION_SUCCESS = '@@notes/REMOVE_NOTE_SECTION_SUCCESS',
+  ADD_NOTE_SUCCESS = '@@notes/ADD_NOTE_SUCCESS',
+  REMOVE_NOTE_SUCCESS = '@@notes/REMOVE_NOTE_SUCCESS',
 }
