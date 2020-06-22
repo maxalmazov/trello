@@ -14,14 +14,20 @@ import { AddNoteCardFormWrapper } from './AddNoteCardForm.styled';
 import ColorInput from './ColorInput'
 import { TextFieldInputWrapper } from './TextInput.styled';
 import { NewNote } from '../../../../store/note/types';
+import { theme } from '../../../../theme';
 
-const AddNoteCardForm = ({ handleClose }: any) => {
+interface AddNoteCardFormProps {
+  handleClose: () => void;
+  notesSectionId: number;
+}
+
+const AddNoteCardForm = ({ handleClose, notesSectionId }: AddNoteCardFormProps) => {
   const dispatch = useDispatch();
-  const [selectedColor, setSelectedColor] = useState('#ffffff');
+  const [selectedColor, setSelectedColor] = useState(theme.white);
 
   const addNoteList = (newNoteData: NewNote) => {
     handleClose();
-    dispatch(addNote(newNoteData));
+    dispatch(addNote(newNoteData, notesSectionId));
   };
 
   const formik = useFormik({
@@ -29,18 +35,18 @@ const AddNoteCardForm = ({ handleClose }: any) => {
       title: '',
       description: '',
       color: selectedColor,
-      dueTo: '2020-06-22', // TODO
+      dueTo: new Date().toISOString().substring(0, 10),
       isComplete: false,
     },
     validate: (newNoteSectionData: NewNote) => {
       const errors = {};
 
       if (newNoteSectionData.title.length < 1) {
-        Object.assign(errors, {title: 'Title can not be empty'});
+        // Object.assign(errors, {title: 'Title can not be empty'});
       }
 
       if (newNoteSectionData.description.length < 1) {
-        Object.assign(errors, {description: 'Description can not be empty'});
+        // Object.assign(errors, {description: 'Description can not be empty'});
       }
 
       return errors;

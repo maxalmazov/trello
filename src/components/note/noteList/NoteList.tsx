@@ -1,8 +1,6 @@
 import React from 'react';
-import { IconButton } from '@material-ui/core';
-import MoreVertIcon from '@material-ui/icons/MoreVert';
 
-import NoteCard from '../noteCard/NoteCard';
+import NoteCard from '../noteCard/NoteCard.container';
 import { Note, NotesSection } from '../../../store/note/types';
 import {
   NoteListHeader,

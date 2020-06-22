@@ -1,6 +1,10 @@
 import React, {  useState } from 'react';
-import { ColorInputWrapper, ColorInputBlockWrapper } from './ColorInputStyled';
-import { Typography } from '@material-ui/core';
+import {
+  ColorInputWrapper,
+  ColorInputBlockWrapper,
+  ColorLabelWrapper
+} from './ColorInputStyled';
+import { FormControlLabel, Typography } from '@material-ui/core';
 import { theme } from '../../../../theme';
 
 const colors = {
@@ -19,9 +23,11 @@ const ColorInput = ({selectedColor, setSelectedColor}: any) => {
 
   return (
     <ColorInputBlockWrapper>
-      <Typography variant={'subtitle1'}>
-        Background color:
-      </Typography>
+      <ColorLabelWrapper>
+        <Typography variant={'subtitle1'}>
+          Background color:
+        </Typography>
+      </ColorLabelWrapper>
       {
         Object.values(colors).map((color) => <ColorInputWrapper
           key={color}

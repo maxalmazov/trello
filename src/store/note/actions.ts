@@ -39,10 +39,10 @@ export const removeNotesSection = (noteSectionId: number) => async (dispatch: an
   }
 };
 
-export const addNote = (newNote: NewNote) => async (dispatch: any) => {
+export const addNote = (note: NewNote, notesSectionId: number) => async (dispatch: any) => {
   try {
-    const newSection = controllers.notes.addNote(newNote);
-    dispatch(addNoteSuccess(newSection));
+    const newNote = controllers.notes.addNote(note, notesSectionId);
+    dispatch(addNoteSuccess(newNote, notesSectionId));
   } catch (error) {
     console.log(error);
   }

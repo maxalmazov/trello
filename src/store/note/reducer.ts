@@ -17,14 +17,11 @@ const reducer: Reducer<State, Action> = (state: State = initialState, action: Ac
     case ActionTypes.GET_NOTES_LIST:
       return {
         ...state,
-        loading: true,
       };
 
     case ActionTypes.GET_NOTES_LIST_SUCCESS:
       return {
         ...state,
-        loading: false,
-        loaded: true,
         notesList: action.payload.notesList
       };
 
@@ -34,11 +31,28 @@ const reducer: Reducer<State, Action> = (state: State = initialState, action: Ac
 
       return {
         ...state,
-        loading: false,
-        loaded: true,
       };
 
     case ActionTypes.REMOVE_NOTE_SECTION_SUCCESS:
+      state.notesList = action.payload.notesList;
+
+      return {
+        ...state,
+      };
+
+    case ActionTypes.ADD_NOTE_SUCCESS:
+      state.lastNotesId = action.payload.newNote.id;
+      state.notesList[action.payload.notesSectionId].notes.push(
+        action.payload.newNote
+      );
+
+      console.log(state);
+
+      return {
+        ...state,
+      };
+
+    case ActionTypes.REMOVE_NOTE_SUCCESS:
       state.notesList = action.payload.notesList;
 
       return {

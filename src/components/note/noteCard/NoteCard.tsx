@@ -1,4 +1,4 @@
-import React , { useState } from 'react';
+import React , { useState, useEffect } from 'react';
 import { Collapse, Link, } from '@material-ui/core';
 
 import NoteCardActions from './NoteCardActions';
@@ -8,6 +8,10 @@ import { NoteCardWrapper } from './NoteCard.styled';
 const NoteCard = (note: Note) => {
   const PREVIEW_TEXT_LENGTH = 350;
   const [checked, setChecked] = useState(false);
+
+  useEffect(() => {
+
+  });
 
   const handleChange = () => {
     setChecked((prev) => !prev);

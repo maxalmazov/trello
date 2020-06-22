@@ -36,8 +36,20 @@ export const removeNotesSection = (notesSectionId: number) => {
   return notes;
 };
 
-export const addNote = (note: NewNote) => {
-  console.log('Controller try to save new note');
+export const addNote = (note: NewNote, notesSectionId: number) => {
+  const notes: State = JSON.parse(localStorage.getItem('notes') ?? '{}');
+
+  const newNote = {
+    id: notes.lastNotesId + 1,
+    ...note
+  };
+
+  notes.notesList[String(notesSectionId)].notes.push(newNote);
+  notes.lastNotesId++;
+
+  localStorage.setItem('notes', JSON.stringify(notes));
+
+  return newNote;
 };
 
 export const removeNote = (note: number) => {

@@ -25,3 +25,7 @@ export const ColorInputWrapper = styled.div<{color: string, isChecked: boolean}>
     outline: none;
   }
 `;
+
+export const ColorLabelWrapper = styled.div`
+  margin-right: 8px;
+`;
