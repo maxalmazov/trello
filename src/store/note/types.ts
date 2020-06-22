@@ -11,6 +11,7 @@ export interface Note {
   dueTo: string;
   isComplete: boolean;
   asset: string|null;
+  color: string;
 }
 
 export interface NotesSection {

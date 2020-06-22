@@ -11,6 +11,7 @@ export const initialData = {
           dueTo: 'December 17, 1995 03:24:00',
           isComplete: true,
           asset: '///',
+          color: '#ffffff'
         },
         {
           id: 2,
@@ -19,6 +20,7 @@ export const initialData = {
           dueTo: 'December 17, 1995 03:24:00',
           isComplete: true,
           asset: '///',
+          color: '#ffffff'
         },
       ]
     },
@@ -33,6 +35,7 @@ export const initialData = {
           dueTo:'December 17, 1995 03:24:00',
           isComplete: false,
           asset: '///',
+          color: '#ffffff'
         },
       ]
     },

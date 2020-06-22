@@ -10,7 +10,7 @@ import {
   NoteListWrapper,
 } from './NoteList.styled';
 import NoteListAction from './NoteListAction';
-import AddNoteCard from '../noteCard/AddNoteCard';
+import AddNoteCard from '../noteCard/form/AddNoteCard';
 
 const NoteList = (notesSection: NotesSection) => {
   return (
@@ -22,7 +22,7 @@ const NoteList = (notesSection: NotesSection) => {
         <NoteListAction notesSectionId={notesSection.id}/>
       </NoteListHeaderWrapper>
         {notesSection.notes && notesSection.notes.map((note:Note) => <NoteCard key={'noteCardId' + note.id} {...note}/>)}
-        <AddNoteCard />
+        <AddNoteCard notesSectionId={notesSection.id}/>
     </NoteListWrapper>
   );
 };

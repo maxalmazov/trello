@@ -9,6 +9,12 @@ export interface ThemeInterface {
 
 export const theme = {
   primaryColor: '#567',
+  white: '#ffffff',
+  black: '#000000',
+  orange: '#ffbb37',
+  pink: '#ff768f',
+  blue: '#4d88ff',
+  green: '#43dc9c',
 };
 
 export const GlobalStyles = styledComponents.createGlobalStyle`

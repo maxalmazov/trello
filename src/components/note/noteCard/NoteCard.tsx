@@ -29,7 +29,7 @@ const NoteCard = (note: Note) => {
   };
 
   return (
-    <NoteCardWrapper>
+    <NoteCardWrapper color={note.color}>
       {renderNoteDescription(note.description)}
       <NoteCardActions note={note}/>
     </NoteCardWrapper>
