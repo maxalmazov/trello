@@ -1,19 +1,15 @@
-import { connect } from 'react-redux';
+import { connect, useSelector } from 'react-redux';
 
 import Component from './Note';
-import { Note } from '../../store/notes/types';
-// import { NotesSection } from '../../store/notes/types';
+import { Note, Notes } from '../../store/notes/types';
+import { getNotes } from '../../store/notes/selectors';
 
 interface State {
-  [notesListsId: string]: {
-    [notesList: string]: {
-      notes: Note[]
-    }
-  };
+  notes: Notes
 }
 
-const mapStateToProps = (state: State) => ({
-  // ...state.notes.notesList.notes,
+const mapStateToProps = (state: Notes) => ({
+  ...state.notes
 });
 
 export default connect(mapStateToProps)(Component);

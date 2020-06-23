@@ -7,10 +7,12 @@ import {
   DialogContent,
   DialogTitle,
   TextField,
-  Checkbox, FormControlLabel
+  Checkbox,
+  FormControlLabel,
 } from '@material-ui/core';
+
 import { addNote } from '../../../store/notes/actions';
-import { AddNoteCardFormWrapper } from './AddNoteCardForm.styled';
+import { AddNoteCardFormWrapper } from './AddNoteForm.styled';
 import ColorInput from '../../inputs/ColorInput'
 import { TextFieldInputWrapper } from '../../inputs/TextInput.styled';
 import { NewNote } from '../../../store/notes/types';
@@ -21,22 +23,23 @@ interface AddNoteCardFormProps {
   notesSectionId: number;
 }
 
-const AddNoteCardForm = ({ handleClose, notesSectionId }: AddNoteCardFormProps) => {
+const AddNoteForm = ({ handleClose, notesSectionId }: AddNoteCardFormProps) => {
   const dispatch = useDispatch();
   const [selectedColor, setSelectedColor] = useState(theme.white);
 
   const addNoteList = (newNoteData: NewNote) => {
     handleClose();
-    dispatch(addNote(newNoteData, notesSectionId));
+    dispatch(addNote(newNoteData));
   };
 
   const formik = useFormik({
     initialValues: {
+      sectionId: notesSectionId,
       title: '',
       description: '',
       color: selectedColor,
       dueTo: new Date().toISOString().substring(0, 10),
-      isComplete: false,
+      isCompleted: false,
     },
     validate: (newNoteSectionData: NewNote) => {
       const errors = {};
@@ -114,7 +117,7 @@ const AddNoteCardForm = ({ handleClose, notesSectionId }: AddNoteCardFormProps) 
             control={
               <Checkbox
                 id={'isComplete'}
-                checked={formik.values.isComplete}
+                checked={formik.values.isCompleted}
                 onChange={formik.handleChange}
               />
             }
@@ -136,4 +139,4 @@ const AddNoteCardForm = ({ handleClose, notesSectionId }: AddNoteCardFormProps) 
   );
 };
 
-export default AddNoteCardForm;
+export default AddNoteForm;

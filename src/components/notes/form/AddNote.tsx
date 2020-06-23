@@ -1,15 +1,16 @@
 import React, { useState } from 'react';
-import { Dialog } from '@material-ui/core';
+import { Dialog, Typography } from '@material-ui/core';
+
 import {
   NewNoteButton
 } from '../../notesSections/NotesSection.styled';
-import AddNoteCardForm from './AddNoteCardForm';
+import AddNoteForm from './AddNoteForm';
 
-interface AddNoteCardProps {
+interface AddNoteProps {
   notesSectionId: number
 }
 
-const AddNoteCard = ({ notesSectionId }: AddNoteCardProps) => {
+const AddNote = ({ notesSectionId }: AddNoteProps) => {
   const [open, setOpen] = useState(false);
 
   const handleOpen = () => {
@@ -19,13 +20,13 @@ const AddNoteCard = ({ notesSectionId }: AddNoteCardProps) => {
   return (
     <>
       <NewNoteButton onClick={handleOpen}>
-        <span>+ Add new card</span>
+        <Typography variant={'button'}>+ Add new card</Typography>
       </NewNoteButton>
       <Dialog open={open} onClose={handleOpen} aria-labelledby={'form-dialog-title'}>
-        <AddNoteCardForm handleClose={handleOpen} notesSectionId={notesSectionId}/>
+        <AddNoteForm handleClose={handleOpen} notesSectionId={notesSectionId}/>
       </Dialog>
     </>
   );
 };
 
-export default AddNoteCard;
+export default AddNote;

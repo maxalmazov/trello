@@ -1,5 +1,5 @@
 import { initialData } from '../../initialData';
-import { Note, Notes } from '../../store/notes/types';
+import { NewNote, Note, Notes } from '../../store/notes/types';
 import { NewNotesSectionData } from '../../store/notesSections/types';
 
 const NOTES = 'notes';
@@ -72,10 +72,34 @@ export const addNotesSection = (newNotesSectionData: NewNotesSectionData) => {
 };
 
 export const removeNotesSection = (notesSectionId: number) => {
+  // TODO: remove related notes
+
   const notesSectionIri = 'sections/' + notesSectionId;
   removeItem(NOTES_SECTIONS, notesSectionIri);
 
   return notesSectionIri;
+};
+
+export const addNote = (noteData: NewNote) => {
+  const lastNoteId = getItem(IDS_COUNTER).lastNoteId;
+  const newNote = {
+    id: lastNoteId + 1,
+    ...noteData,
+  };
+  const noteToSave = {
+    ['notes/' + newNote.id]: newNote,
+  };
+
+  pushItem(NOTES, noteToSave);
+
+  const notesSections = getItem(NOTES_SECTIONS);
+  notesSections['sections/' + newNote.sectionId].notesIds.push('notes/' + newNote.id);
+  saveItem(NOTES_SECTIONS, notesSections);
+  pushItem(IDS_COUNTER, {
+    lastNoteId: lastNoteId + 1
+  });
+
+  return noteToSave;
 };
 
 export default {
@@ -85,4 +109,5 @@ export default {
   getNotesBySectionId,
   addNotesSection,
   removeNotesSection,
+  addNote,
 }

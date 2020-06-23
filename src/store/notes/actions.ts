@@ -15,10 +15,10 @@ export const loadNotesBySectionId = (notesSectionId: number) => async (dispatch:
   }
 };
 
-export const addNote = (note: NewNote, notesSectionId: number) => async (dispatch: any) => {
+export const addNote = (note: NewNote) => async (dispatch: any) => {
   try {
-    // const newNote = controllers.notes.addNote(notes, notesSectionId);
-    // dispatch(addNoteSuccess(newNote, notesSectionId));
+    const newNote = controllers.notes.addNote(note);
+    dispatch(addNoteSuccess(newNote));
   } catch (error) {
     console.log(error);
   }

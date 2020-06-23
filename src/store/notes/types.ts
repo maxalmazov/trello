@@ -16,9 +16,10 @@ export interface Note {
 
 export interface NewNote {
   title: string;
+  sectionId: number;
   description: string;
   dueTo: string;
-  isComplete: boolean;
+  isCompleted: boolean;
   color: string;
 }
 

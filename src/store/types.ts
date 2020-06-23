@@ -10,6 +10,6 @@ export interface State {
   };
   idsCounter: {
     lastNotesSectionId: number;
-    lastNotesId: number;
+    lastNoteId: number;
   };
 }
