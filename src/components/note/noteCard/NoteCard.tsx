@@ -2,7 +2,7 @@ import React , { useState, useEffect } from 'react';
 import { Collapse, Link, } from '@material-ui/core';
 
 import NoteCardActions from './NoteCardActions';
-import { Note } from '../../../store/note/types';
+import { Note } from '../../../store/notes/types';
 import { NoteCardWrapper } from './NoteCard.styled';
 
 const NoteCard = (note: Note) => {

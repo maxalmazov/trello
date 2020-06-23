@@ -1,5 +1,15 @@
-import { State as NotesState } from './note/types'
+import { Note } from './notes/types';
+import { NotesSection } from './notesSections/types';
 
-export interface StoreState {
-  notes: NotesState
+export interface State {
+  notesSections: {
+    [notesSectionId: string]: NotesSection;
+  };
+  notes: {
+    [notesId: string]: Note;
+  };
+  idsCounter: {
+    lastNotesSectionId: number;
+    lastNotesId: number;
+  };
 }

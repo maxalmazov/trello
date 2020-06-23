@@ -12,7 +12,7 @@ import {
   LeftSide,
   RightSide,
 } from './Header.styled';
-import AddNoteSection from '../../../components/note/noteList/AddNoteList';
+import AddNoteSection from '../../../components/note/notesSections/AddNoteList';
 
 export interface HeaderProps {
 }

@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Dialog } from '@material-ui/core';
 import {
   NewNoteButton
-} from '../../noteList/NoteList.styled';
+} from '../../notesSections/NotesSection.styled';
 import AddNoteCardForm from './AddNoteCardForm';
 
 interface AddNoteCardProps {

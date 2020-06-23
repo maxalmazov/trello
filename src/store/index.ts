@@ -8,7 +8,8 @@ import {
 import thunk from 'redux-thunk';
 import { composeWithDevTools } from 'redux-devtools-extension';
 
-import notes from './note/reducer';
+import notes from './notes/reducer';
+import notesSections from './notesSections/reducer';
 
 declare global {
   interface Window {
@@ -22,6 +23,7 @@ const middleware = [thunk];
 
 export const rootReducer: Reducer = combineReducers({
   notes,
+  notesSections,
 });
 
 const store = createStore(

@@ -6,15 +6,15 @@ import { Wrapper } from './Root.styled';
 import Header from './Header/Header.container';
 import Footer from './Footer/Footer.container';
 import Board from '../Board/Board.container';
-import { loadNotes } from '../../store/note/actions';
-import { getNotesList } from '../../store/note/selectors';
+import { loadNotesSections } from '../../store/notesSections/actions';
+import { getNotesSection } from '../../store/notesSections/selectors';
 
 const HomeComponent: React.FC = () => {
   const dispatch = useDispatch();
-  const notesList = useSelector(getNotesList);
+  const notesSections = useSelector(getNotesSection);
 
   useEffect(() => {
-    dispatch(loadNotes())
+    dispatch(loadNotesSections())
   }, []);
 
   return (
@@ -22,7 +22,7 @@ const HomeComponent: React.FC = () => {
       <GlobalStyles/>
       <Wrapper>
         <Header/>
-        <Board notesList={notesList}/>
+        <Board notesSections={notesSections}/>
         <Footer/>
       </Wrapper>
     </>

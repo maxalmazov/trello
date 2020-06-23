@@ -1,8 +1,8 @@
 import { connect } from 'react-redux';
 
 import Component from './NoteCard';
-import { Note } from '../../../store/note/types';
-// import { NotesSection } from '../../store/note/types';
+import { Note } from '../../../store/notes/types';
+// import { NotesSection } from '../../store/notes/types';
 
 interface State {
   [notesListsId: string]: {

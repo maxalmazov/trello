@@ -1,7 +1,7 @@
 import React from 'react';
 import { Checkbox, FormControlLabel, Typography } from '@material-ui/core';
 import { CardActionWrapper } from './NoteCardAction.styled';
-import { Note } from '../../../store/note/types';
+import { Note } from '../../../store/notes/types';
 
 interface NoteCardActionsProps {
   note: Note
@@ -16,7 +16,7 @@ const NoteCardActions = ({ note }: NoteCardActionsProps) => {
       {/*Firefox will never trigger the event.*/}
       {/*You should move the onClick listener to the parent button element*/}
       {/*<FormControlLabel*/}
-      {/*  control={<Checkbox checked={props.note.isComplete} />}*/}
+      {/*  control={<Checkbox checked={props.notes.isComplete} />}*/}
       {/*  label={'Done'}*/}
       {/*  labelPlacement={'start'}*/}
       {/*/>*/}

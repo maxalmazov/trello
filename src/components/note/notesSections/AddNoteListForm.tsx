@@ -8,7 +8,7 @@ import {
   DialogTitle,
   TextField,
 } from '@material-ui/core';
-import { addNotesSection } from '../../../store/note/actions';
+import { addNotesSection } from '../../../store/notesSections/actions';
 import { AddNoteListFormWrapper } from './AddNoteListForm.styled';
 
 interface NewNoteSectionData {
