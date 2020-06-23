@@ -1,12 +1,7 @@
 import styled from 'styled-components';
-import {
-  Grid,
-  Paper,
-  Typography,
-  Box,
-} from '@material-ui/core';
+import { Grid, Box } from '@material-ui/core';
 
-export const NoteListWrapper = styled(Grid)`
+export const NotesSectionWrapper = styled(Grid)`
   min-width: 338px;
   margin: 5px;
   padding: 8px;
@@ -16,11 +11,7 @@ export const NoteListWrapper = styled(Grid)`
   box-shadow: 0 4px 5px -2px rgba(0,0,0,0.2),0px 7px 10px 1px rgba(0,0,0,0.14),0px 2px 16px 1px rgba(0,0,0,0.12);
 `;
 
-export const PaperWrapper = styled(Paper)`
-
-`;
-
-export const NoteListHeaderWrapper = styled(Box)`
+export const NotesSectionHeaderWrapper = styled(Box)`
   overflow: auto;
   display: flex;
   flex-direction: row;
@@ -28,18 +19,13 @@ export const NoteListHeaderWrapper = styled(Box)`
   margin-bottom: 8px;
 `;
 
-export const NoteListHeader = styled(Box)`
+export const NotesSectionHeader = styled(Box)`
   padding: 12px;
   font-size: 1.3em;
 `;
 
-export const NoteListHeaderActions = styled(Typography)`
-
-`;
-
 export const NewNoteButton = styled(Box)`
   display: flex;
-  //justify-content: space-between;
   flex-grow: 1;
   cursor: pointer;
   padding: 8px;

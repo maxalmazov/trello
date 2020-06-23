@@ -1,9 +1,9 @@
 import React from 'react';
+import { Grid } from '@material-ui/core';
 
-import { BoardWrapper } from './Board.styled';
-import Grid from '@material-ui/core/Grid';
-import NotesSectionComponent from '../../components/note/notesSections/NotesSection';
 import { NotesSection } from '../../store/notesSections/types';
+import { BoardWrapper } from './Board.styled';
+import NotesSectionComponent from '../../components/note/notesSections/NotesSection';
 
 export interface Props {
   notesSections: {

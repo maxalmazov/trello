@@ -1,28 +1,45 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 
 import NoteCard from '../noteCard/NoteCard.container';
 import { NotesSection } from '../../../store/notesSections/types';
 import { Note } from '../../../store/notes/types';
 import {
-  NoteListHeader,
-  NoteListHeaderWrapper,
-  NoteListWrapper,
+  NotesSectionHeader,
+  NotesSectionHeaderWrapper,
+  NotesSectionWrapper,
 } from './NotesSection.styled';
 import NotesSectionAction from './NotesSectionAction';
 import AddNoteCard from '../noteCard/form/AddNoteCard';
+import { loadNotesBySectionId } from '../../../store/notes/actions';
+import { getNotes } from '../../../store/notes/selectors';
 
-const NotesSectionComponent = () => {
+const NotesSectionComponent = ({ id, title, notesIds}: NotesSection) => {
+  const dispatch = useDispatch();
+
+  const notes = useSelector(getNotes);
+  console.log(notes);
+  //
+  useEffect(() => {
+    dispatch(loadNotesBySectionId(id))
+  }, [id]);
+
   return (
-    <NoteListWrapper>
-      <NoteListHeaderWrapper>
-        <NoteListHeader>
-          {'notesSection.title'}
-        </NoteListHeader>
+    <NotesSectionWrapper>
+      <NotesSectionHeaderWrapper>
+        <NotesSectionHeader>
+          {title}
+        </NotesSectionHeader>
         <NotesSectionAction notesSectionId={1}/>
-      </NoteListHeaderWrapper>
-        {/*{notesSection.notes && notesSection.notes.map((notes:Note) => <NoteCard key={'noteCardId' + notes.id} {...notes}/>)}*/}
-        {/*<AddNoteCard notesSectionId={notesSection.id}/>*/}
-    </NoteListWrapper>
+      </NotesSectionHeaderWrapper>
+        {
+          notes &&
+          Object.values(notes).map(
+            (note: Note) => notesIds.includes('notes/' + note.id) ? (<NoteCard key={'noteCardId' + note.id} {...note}/>): null
+          )
+        }
+        <AddNoteCard notesSectionId={id}/>
+    </NotesSectionWrapper>
   );
 };
 

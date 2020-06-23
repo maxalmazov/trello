@@ -13,7 +13,7 @@ interface State {
 }
 
 const mapStateToProps = (state: State) => ({
-  ...state.notes.notesList.notes,
+  // ...state.notes.notesList.notes,
 });
 
 export default connect(mapStateToProps)(Component);

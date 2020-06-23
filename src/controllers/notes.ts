@@ -2,13 +2,10 @@
 
 import { initialData } from '../initialData';
 import { NewNote } from '../store/notes/types';
+import api from '../lib/helpers/api';
 
-export const getNotes = () => {
-  if (localStorage.getItem('notes') === null) {
-    localStorage.setItem('notes', JSON.stringify(initialData));
-  }
-
-  return JSON.parse(localStorage.getItem('notes') ?? '{}');
+export const getNotesBySectionId = (notesSectionId: number) => {
+  return api.getNotesBySectionId(notesSectionId);
 };
 
 export const addNotesSection = (notesSection: any) => {
@@ -57,7 +54,7 @@ export const removeNote = (note: number) => {
 };
 
 export default {
-  getNotes,
+  getNotesBySectionId,
   addNotesSection,
   removeNotesSection,
   addNote,

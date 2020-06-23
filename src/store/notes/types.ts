@@ -23,6 +23,7 @@ export interface NewNote {
 }
 
 export enum ActionTypes {
+  LOAD_NOTES_SUCCESS = '@@notes/LOAD_NOTES_SUCCESS',
   ADD_NOTE_SUCCESS = '@@notes/ADD_NOTE_SUCCESS',
   REMOVE_NOTE_SUCCESS = '@@notes/REMOVE_NOTE_SUCCESS',
 }

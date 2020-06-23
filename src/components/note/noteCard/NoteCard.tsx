@@ -6,6 +6,7 @@ import { Note } from '../../../store/notes/types';
 import { NoteCardWrapper } from './NoteCard.styled';
 
 const NoteCard = (note: Note) => {
+  console.log(note);
   const PREVIEW_TEXT_LENGTH = 350;
   const [checked, setChecked] = useState(false);
 
@@ -18,16 +19,16 @@ const NoteCard = (note: Note) => {
   };
 
   const renderNoteDescription = (description: string) => {
-    if (description.length > PREVIEW_TEXT_LENGTH) {
-      return (
-        <>
-          <Collapse in={checked} collapsedHeight={180}>
-            {description}
-          </Collapse>
-          <Link onClick={handleChange}>{!checked ? '...read more' : 'collapse↑'}</Link>
-        </>
-      );
-    }
+    // if (description.length > PREVIEW_TEXT_LENGTH) {
+    //   return (
+    //     <>
+    //       <Collapse in={checked} collapsedHeight={180}>
+    //         {description}
+    //       </Collapse>
+    //       <Link onClick={handleChange}>{!checked ? '...read more' : 'collapse↑'}</Link>
+    //     </>
+    //   );
+    // }
 
     return description;
   };

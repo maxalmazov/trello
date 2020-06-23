@@ -1,7 +1,7 @@
 import { Reducer } from 'redux';
 import { ActionType } from 'typesafe-actions';
 
-import { Notes } from './types';
+import { ActionTypes, Notes } from './types';
 import * as actions from './actionCreators';
 import { initialData } from '../../initialData';
 
@@ -11,6 +11,15 @@ export type Action = ActionType<typeof actions>;
 
 const reducer: Reducer<Notes, Action> = (state: Notes = initialState, action: Action) => {
   switch (action.type) {
+    case ActionTypes.LOAD_NOTES_SUCCESS:
+      console.log(state);
+      console.log(action);
+      // state.note = action.payload;
+
+      return {
+        ...state,
+      };
+    //
     // case ActionTypes.ADD_NOTE_SECTION_SUCCESS:
     //   state.lastNotesListId = action.payload.id;
     //   state.notesList[String(action.payload.id)] = action.payload;
