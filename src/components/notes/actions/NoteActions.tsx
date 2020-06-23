@@ -1,12 +1,12 @@
 import React from 'react';
 import { Checkbox, FormControlLabel, Typography } from '@material-ui/core';
-import { CardActionWrapper } from './NoteCardAction.styled';
+import { CardActionWrapper } from './NoteActions.styled';
 import { Note } from '../../../store/notes/types';
 
 interface NoteCardActionsProps {
   note: Note
 }
-const NoteCardActions = ({ note }: NoteCardActionsProps) => {
+const NoteActions = ({ note }: NoteCardActionsProps) => {
   return (
     <CardActionWrapper >
       <Typography variant={'caption'}>
@@ -23,4 +23,4 @@ const NoteCardActions = ({ note }: NoteCardActionsProps) => {
     </CardActionWrapper>
   );
 };
-export default NoteCardActions;
+export default NoteActions;

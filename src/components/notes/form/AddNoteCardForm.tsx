@@ -9,12 +9,12 @@ import {
   TextField,
   Checkbox, FormControlLabel
 } from '@material-ui/core';
-import { addNote } from '../../../../store/notes/actions';
+import { addNote } from '../../../store/notes/actions';
 import { AddNoteCardFormWrapper } from './AddNoteCardForm.styled';
-import ColorInput from './ColorInput'
-import { TextFieldInputWrapper } from './TextInput.styled';
-import { NewNote } from '../../../../store/notes/types';
-import { theme } from '../../../../theme';
+import ColorInput from '../../inputs/ColorInput'
+import { TextFieldInputWrapper } from '../../inputs/TextInput.styled';
+import { NewNote } from '../../../store/notes/types';
+import { theme } from '../../../theme';
 
 interface AddNoteCardFormProps {
   handleClose: () => void;

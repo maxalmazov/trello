@@ -1,14 +1,23 @@
 import { initialData } from '../../initialData';
 import { Note, Notes } from '../../store/notes/types';
+import { NewNotesSectionData } from '../../store/notesSections/types';
 
 const NOTES = 'notes';
 const NOTES_SECTIONS = 'notesSections';
 const IDS_COUNTER = 'idsCounter';
 
 export const initialize = () => {
-  localStorage.setItem(NOTES_SECTIONS, JSON.stringify(initialData.notesSections));
-  localStorage.setItem(NOTES, JSON.stringify(initialData.notes));
-  localStorage.setItem(IDS_COUNTER, JSON.stringify(initialData.idsCounter));
+  if (localStorage.getItem(NOTES_SECTIONS) === null) {
+    localStorage.setItem(NOTES_SECTIONS, JSON.stringify(initialData.notesSections));
+  }
+
+  if (localStorage.getItem(NOTES) === null) {
+    localStorage.setItem(NOTES, JSON.stringify(initialData.notes));
+  }
+
+  if (localStorage.getItem(IDS_COUNTER) === null) {
+    localStorage.setItem(IDS_COUNTER, JSON.stringify(initialData.idsCounter));
+  }
 };
 
 export const saveItem = (key: string, item: any) => {
@@ -17,6 +26,12 @@ export const saveItem = (key: string, item: any) => {
 
 export const getItem = (key: string) => {
   return JSON.parse(localStorage.getItem(key) ?? '{}');
+};
+
+export const pushItem = (key: string, item: any) => {
+  const items = getItem(key);
+  Object.assign(items, item);
+  saveItem(key, items);
 };
 
 export const getNotesBySectionId = (notesSectionId: number) => {
@@ -31,9 +46,29 @@ export const getNotesBySectionId = (notesSectionId: number) => {
   return notes;
 };
 
+export const addNotesSection = (newNotesSectionData: NewNotesSectionData) => {
+  const lastNotesSectionId: number = getItem(IDS_COUNTER).lastNotesSectionId;
+
+  const newNotesSection = {
+    id: lastNotesSectionId + 1,
+    ...newNotesSectionData,
+  };
+  const notesSectionToSave = {
+    ['sections/' + newNotesSection.id]: newNotesSection
+  };
+
+  pushItem(NOTES_SECTIONS, notesSectionToSave);
+  pushItem(IDS_COUNTER, {
+    lastNotesSectionId: lastNotesSectionId + 1
+  });
+
+  return notesSectionToSave;
+};
+
 export default {
   initialize,
   saveItem,
   getItem,
   getNotesBySectionId,
+  addNotesSection,
 }

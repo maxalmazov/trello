@@ -12,9 +12,7 @@ export type Action = ActionType<typeof actions>;
 const reducer: Reducer<Notes, Action> = (state: Notes = initialState, action: Action) => {
   switch (action.type) {
     case ActionTypes.LOAD_NOTES_SUCCESS:
-      console.log(state);
-      console.log(action);
-      // state.note = action.payload;
+      Object.assign(state, action.payload);
 
       return {
         ...state,

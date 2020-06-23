@@ -5,6 +5,7 @@ import {
   removeNotesSectionSuccess,
 } from './actionCreators';
 import controllers from '../../controllers';
+import { NewNotesSectionData } from './types';
 
 export const loadNotesSections = () => (dispatch: any) => {
   dispatch(getNotesSections());
@@ -16,10 +17,10 @@ export const loadNotesSections = () => (dispatch: any) => {
   }
 };
 
-export const addNotesSection = (newNoteSection: any) => async (dispatch: any) => {
+export const addNotesSection = (newNotesSectionData: NewNotesSectionData) => async (dispatch: any) => {
   try {
-    // const newSection = controllers.notes.addNotesSection(newNoteSection);
-    // dispatch(addNotesSectionSuccess(newSection));
+    const newNotesSection = controllers.notesSections.addNotesSection(newNotesSectionData);
+    dispatch(addNotesSectionSuccess(newNotesSection));
   } catch (error) {
     console.log(error);
   }

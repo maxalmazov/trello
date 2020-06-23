@@ -8,7 +8,7 @@ import controllers from '../../controllers';
 
 export const loadNotesBySectionId = (notesSectionId: number) => async (dispatch: any) => {
   try {
-     const notes = controllers.notes.getNotesBySectionId(notesSectionId);
+    const notes = controllers.notes.getNotesBySectionId(notesSectionId);
     dispatch(loadNotesSuccess(notes));
   } catch (error) {
     console.log(error);

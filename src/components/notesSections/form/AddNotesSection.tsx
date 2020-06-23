@@ -1,10 +1,11 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Dialog, IconButton } from '@material-ui/core';
 import { Add } from '@material-ui/icons';
-import AddNoteSectionForm from './AddNoteListForm';
+
+import AddNoteSectionForm from './AddNotesSectionForm';
 
 const AddNoteSection = () => {
-  const [open, setOpen] = React.useState(false);
+  const [open, setOpen] = useState(false);
 
   const handleOpen = () => {
     setOpen(!open);

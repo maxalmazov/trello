@@ -18,17 +18,15 @@ const reducer: Reducer<NotesSections, Action> = (state: NotesSections = initialS
 
     case ActionTypes.GET_NOTES_SECTION_SUCCESS:
       return {
-        ...state,
+        ...action.payload,
       };
 
-    // case ActionTypes.ADD_NOTE_SECTION_SUCCESS:
-    //   state.lastNotesListId = action.payload.id;
-    //   state.notesList[String(action.payload.id)] = action.payload;
-    //
-    //   return {
-    //     ...state,
-    //   };
-    //
+    case ActionTypes.ADD_NOTES_SECTION_SUCCESS:
+      return {
+        ...state,
+        ...action.payload
+      };
+
     // case ActionTypes.REMOVE_NOTE_SECTION_SUCCESS:
     //   state.notesList = action.payload.notesList;
     //

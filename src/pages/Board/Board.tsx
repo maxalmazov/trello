@@ -3,7 +3,7 @@ import { Grid } from '@material-ui/core';
 
 import { NotesSection } from '../../store/notesSections/types';
 import { BoardWrapper } from './Board.styled';
-import NotesSectionComponent from '../../components/note/notesSections/NotesSection';
+import NotesSectionComponent from '../../components/notesSections/NotesSection';
 
 export interface Props {
   notesSections: {

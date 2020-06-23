@@ -5,7 +5,7 @@ import {
   ColorLabelWrapper
 } from './ColorInputStyled';
 import { FormControlLabel, Typography } from '@material-ui/core';
-import { theme } from '../../../../theme';
+import { theme } from '../../theme';
 
 const colors = {
   WHITE: theme.white,

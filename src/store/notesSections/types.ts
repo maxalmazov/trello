@@ -8,10 +8,15 @@ export interface NotesSection {
   notesIds: string[];
 }
 
+export interface NewNotesSectionData {
+  title: string;
+  notesIds: string[];
+}
+
 export enum ActionTypes {
   GET_NOTES_SECTION = '@@notesSections/GET_NOTES_SECTION',
   GET_NOTES_SECTION_SUCCESS = '@@notesSections/GET_NOTES_SECTION_SUCCESS',
   GET_NOTES_SECTION_FAILURE = '@@notesSections/GET_NOTES_SECTION_FAILURE',
-  ADD_NOTE_SECTION_SUCCESS = '@@notesSections/ADD_NOTE_SECTION_SUCCESS',
+  ADD_NOTES_SECTION_SUCCESS = '@@notesSections/ADD_NOTES_SECTION_SUCCESS',
   REMOVE_NOTE_SECTION_SUCCESS = '@@notesSections/REMOVE_NOTE_SECTION_SUCCESS',
 }

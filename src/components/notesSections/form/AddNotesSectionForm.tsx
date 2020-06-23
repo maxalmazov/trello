@@ -8,42 +8,43 @@ import {
   DialogTitle,
   TextField,
 } from '@material-ui/core';
-import { addNotesSection } from '../../../store/notesSections/actions';
-import { AddNoteListFormWrapper } from './AddNoteListForm.styled';
 
-interface NewNoteSectionData {
-  title: string;
+import { addNotesSection as addNotesSectionAction } from '../../../store/notesSections/actions';
+import { AddNotesSectionFormWrapper } from './AddNotesSectionForm.styled';
+import { NewNotesSectionData } from '../../../store/notesSections/types';
+
+interface AddNoteSectionFormProps {
+  handleClose: () => void;
 }
 
-const AddNoteSectionForm = ({ handleClose }: any) => {
+const AddNoteSectionForm = ({ handleClose }: AddNoteSectionFormProps) => {
   const dispatch = useDispatch();
 
-  const addNoteList = (newNoteSectionData: NewNoteSectionData) => {
+  const addNotesSection = (newNoteSectionData: NewNotesSectionData) => {
     handleClose();
-    dispatch(addNotesSection({
-      title: newNoteSectionData.title,
-      notes: [],
-    }));
+    dispatch(addNotesSectionAction(newNoteSectionData));
   };
 
   const formik = useFormik({
     initialValues: {
-      title: ''
+      title: '',
+      notesIds: [],
     },
-    validate: (newNoteSectionData: NewNoteSectionData) => {
+    validate: (newNoteSectionData: NewNotesSectionData) => {
       const errors = {};
+
       if (newNoteSectionData.title.length < 1) {
         Object.assign(errors, {title: 'Title can not be empty'});
       }
 
       return errors;
     },
-    onSubmit: (newNoteSectionData: NewNoteSectionData) => addNoteList(newNoteSectionData),
+    onSubmit: (newNoteSectionData: NewNotesSectionData) => addNotesSection(newNoteSectionData),
   });
 
 
   return (
-    <AddNoteListFormWrapper onSubmit={formik.handleSubmit}>
+    <AddNotesSectionFormWrapper onSubmit={formik.handleSubmit}>
       <DialogTitle id={'form-dialog-title'}>Add new list of notes</DialogTitle>
       <DialogContent>
         <TextField
@@ -66,7 +67,7 @@ const AddNoteSectionForm = ({ handleClose }: any) => {
           Add
         </Button>
       </DialogActions>
-    </AddNoteListFormWrapper>
+    </AddNotesSectionFormWrapper>
   );
 };
 
