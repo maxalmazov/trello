@@ -26,10 +26,10 @@ export const addNotesSection = (newNotesSectionData: NewNotesSectionData) => asy
   }
 };
 
-export const removeNotesSection = (noteSectionId: number) => async (dispatch: any) => {
+export const removeNotesSection = (notesSectionId: number) => async (dispatch: any) => {
   try {
-    // const notes = controllers.notes.removeNotesSection(noteSectionId);
-    // dispatch(removeNotesSectionSuccess(notes));
+    const notesSectionIri = controllers.notesSections.removeNotesSection(notesSectionId);
+    dispatch(removeNotesSectionSuccess(notesSectionIri));
   } catch (error) {
     console.log(error);
   }

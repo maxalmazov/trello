@@ -17,12 +17,7 @@ export const addNotesSection = (newNotesSectionData: NewNotesSectionData) => {
 };
 
 export const removeNotesSection = (notesSectionId: number) => {
-  // const notes: State = JSON.parse(localStorage.getItem('notes') ?? '{}');
-  //
-  // delete(notes.notesList[String(notesSectionId)]);
-  // localStorage.setItem('notes', JSON.stringify(notes));
-  //
-  // return notes;
+  return api.removeNotesSection(notesSectionId);
 };
 
 export default {

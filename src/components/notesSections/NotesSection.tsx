@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
-import NoteCard from '../notes/Note.container';
+import NoteComponent from '../notes/Note.container';
 import { NotesSection } from '../../store/notesSections/types';
 import { Note } from '../../store/notes/types';
 import {
@@ -10,7 +10,7 @@ import {
   NotesSectionWrapper,
 } from './NotesSection.styled';
 import NotesSectionAction from './NotesSectionAction';
-import AddNoteCard from '../notes/form/AddNoteCard';
+import AddNote from '../notes/form/AddNoteCard';
 import { loadNotesBySectionId } from '../../store/notes/actions';
 import { getNotes } from '../../store/notes/selectors';
 
@@ -33,10 +33,10 @@ const NotesSectionComponent = ({ id, title, notesIds}: NotesSection) => {
         {
           notes &&
           Object.values(notes).map(
-            (note: Note) => notesIds.includes('notes/' + note.id) ? (<NoteCard key={'noteCardId' + note.id} {...note}/>): null
+            (note: Note) => notesIds.includes('notes/' + note.id) ? (<NoteComponent key={'noteCardId' + note.id} {...note}/>): null
           )
         }
-        <AddNoteCard notesSectionId={id}/>
+        <AddNote notesSectionId={id}/>
     </NotesSectionWrapper>
   );
 };

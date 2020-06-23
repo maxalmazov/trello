@@ -1,14 +1,15 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { IconButton, Menu, MenuItem } from '@material-ui/core';
-import MoreVertIcon from '@material-ui/icons/MoreVert';
+import { MoreVert as MoreVertIcon } from '@material-ui/icons';
+
 import { removeNotesSection as removeNotesSectionAction } from '../../store/notesSections/actions';
 
-interface NoteListActionProps {
+interface NotesSectionActionProps {
   notesSectionId: number;
 }
 
-const NotesSectionAction = ({ notesSectionId }: NoteListActionProps) => {
+const NotesSectionAction = ({ notesSectionId }: NotesSectionActionProps) => {
   const dispatch = useDispatch();
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
   const open = Boolean(anchorEl);

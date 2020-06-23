@@ -7,5 +7,6 @@ export const getNotesSectionsSuccess = (notesSections: NotesSections) =>
 
 export const addNotesSectionSuccess = (notesSection: NotesSections) =>
   action(ActionTypes.ADD_NOTES_SECTION_SUCCESS, notesSection);
-export const removeNotesSectionSuccess = (data: any) => action(ActionTypes.REMOVE_NOTE_SECTION_SUCCESS, data);
+export const removeNotesSectionSuccess = (notesSectionId: string) =>
+  action(ActionTypes.REMOVE_NOTES_SECTION_SUCCESS, notesSectionId);
 

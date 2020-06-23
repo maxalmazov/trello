@@ -27,31 +27,12 @@ const reducer: Reducer<NotesSections, Action> = (state: NotesSections = initialS
         ...action.payload
       };
 
-    // case ActionTypes.REMOVE_NOTE_SECTION_SUCCESS:
-    //   state.notesList = action.payload.notesList;
-    //
-    //   return {
-    //     ...state,
-    //   };
-    //
-    // case ActionTypes.ADD_NOTE_SUCCESS:
-    //   state.lastNotesId = action.payload.newNote.id;
-    //   state.notesList[action.payload.notesSectionId].notes.push(
-    //     action.payload.newNote
-    //   );
-    //
-    //   console.log(state);
-    //
-    //   return {
-    //     ...state,
-    //   };
-    //
-    // case ActionTypes.REMOVE_NOTE_SUCCESS:
-    //   state.notesList = action.payload.notesList;
-    //
-    //   return {
-    //     ...state,
-    //   };
+    case ActionTypes.REMOVE_NOTES_SECTION_SUCCESS:
+      delete state[action.payload];
+
+      return {
+        ...state,
+      };
 
     default:
       return state;

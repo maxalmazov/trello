@@ -34,6 +34,12 @@ export const pushItem = (key: string, item: any) => {
   saveItem(key, items);
 };
 
+export const removeItem = (key: string, itemId: string) => {
+  const items = getItem(key);
+  delete items[itemId];
+  saveItem(key, items);
+};
+
 export const getNotesBySectionId = (notesSectionId: number) => {
   const notes = {};
   const allNotes: Notes = getItem(NOTES);
@@ -65,10 +71,18 @@ export const addNotesSection = (newNotesSectionData: NewNotesSectionData) => {
   return notesSectionToSave;
 };
 
+export const removeNotesSection = (notesSectionId: number) => {
+  const notesSectionIri = 'sections/' + notesSectionId;
+  removeItem(NOTES_SECTIONS, notesSectionIri);
+
+  return notesSectionIri;
+};
+
 export default {
   initialize,
   saveItem,
   getItem,
   getNotesBySectionId,
   addNotesSection,
+  removeNotesSection,
 }
