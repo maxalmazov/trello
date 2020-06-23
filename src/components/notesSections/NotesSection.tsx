@@ -29,7 +29,7 @@ const NotesSectionComponent = ({ id, title, notesIds}: NotesSection) => {
         </NotesSectionHeader>
         <NotesSectionAction notesSectionId={id}/>
       </NotesSectionHeaderWrapper>
-      <NoteComponent notes={notes} notesIds={notesIds}/>
+      <NoteComponent notes={notes} sectionId={id}/>
         {/*{*/}
         {/*  notes &&*/}
         {/*  Object.values(notes).map(*/}

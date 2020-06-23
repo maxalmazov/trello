@@ -12,10 +12,10 @@ import {
 
 interface NoteComponentProps {
   notes: Notes,
-  notesIds: string[],
+  sectionId: number,
 }
 
-const NoteComponent = ({notes, notesIds}: NoteComponentProps) => {
+const NoteComponent = ({notes, sectionId}: any) => {
   const PREVIEW_TEXT_LENGTH = 350;
   const [checked, setChecked] = useState(false);
 
@@ -49,7 +49,7 @@ const NoteComponent = ({notes, notesIds}: NoteComponentProps) => {
       {
         notes &&
         Object.values(notes).map(
-          (note: Note) => (
+          (note: any) => note.sectionId == sectionId ? (
             <NoteWrapper key={'noteId' + note.id} color={note.color}>
               <CardHeader title={note.title}/>
               {
@@ -71,7 +71,7 @@ const NoteComponent = ({notes, notesIds}: NoteComponentProps) => {
                 </NoteIsCompletedWrapper>
               </NoteActionsWrapper>
             </NoteWrapper>
-          )
+          ) : null
         )
       }
     </>

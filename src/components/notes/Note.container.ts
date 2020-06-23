@@ -8,8 +8,8 @@ interface State {
   notes: Notes
 }
 
-const mapStateToProps = (state: Notes) => ({
-  ...state.notes
+const mapStateToProps = (state: any) => ({
+  // ...state.notes
 });
 
 export default connect(mapStateToProps)(Component);
