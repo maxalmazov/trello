@@ -53,7 +53,7 @@ const NoteComponent = ({ note }: NoteComponentProps) => {
             </Typography>
           </NoteTitleWrapper>
           <NoteActionsWrapper>
-            <NoteAction noteId={note.id}/>
+            <NoteAction note={note}/>
           </NoteActionsWrapper>
         </NoteHeaderWrapper>
         {

@@ -1,24 +1,27 @@
 // make API calls here
 
-import { NewNote } from '../store/notes/types';
-import api from '../lib/helpers/api';
-import { NewNotesSectionData } from '../store/notesSections/types';
+import { NewNote, Note } from '../store/notes/types';
+import request from '../lib/helpers/request';
 
 export const getNotesBySectionId = (notesSectionId: number) => {
-  return api.getNotesBySectionId(notesSectionId);
+  return request.getNotesBySectionId(notesSectionId);
 };
 
 export const addNote = (note: NewNote) => {
-  return api.addNote(note);
+  return request.addNote(note);
 };
 
 export const removeNote = (noteId: number) => {
-  return api.removeNote(noteId)
+  return request.removeNote(noteId)
+};
 
+export const editNote = (note: Note) => {
+  return request.editNote(note)
 };
 
 export default {
   getNotesBySectionId,
   addNote,
   removeNote,
+  editNote,
 }

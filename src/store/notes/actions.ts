@@ -32,3 +32,12 @@ export const removeNote = (noteId: number) => async (dispatch: any) => {
     console.log(error);
   }
 };
+
+export const editNote = (note: NewNote) => async (dispatch: any) => {
+  try {
+    const newNote = controllers.notes.addNote(note);
+    dispatch(addNoteSuccess(newNote));
+  } catch (error) {
+    console.log(error);
+  }
+};

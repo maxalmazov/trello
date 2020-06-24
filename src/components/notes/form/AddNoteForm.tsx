@@ -15,15 +15,16 @@ import { addNote } from '../../../store/notes/actions';
 import { AddNoteCardFormWrapper } from './AddNoteForm.styled';
 import ColorInput from '../../inputs/ColorInput'
 import { TextFieldInputWrapper } from '../../inputs/TextInput.styled';
-import { NewNote } from '../../../store/notes/types';
+import { NewNote, Note } from '../../../store/notes/types';
 import { theme } from '../../../theme';
 
 interface AddNoteCardFormProps {
   handleClose: () => void;
   notesSectionId: number;
+  note?: Note
 }
 
-const AddNoteForm = ({ handleClose, notesSectionId }: AddNoteCardFormProps) => {
+const AddNoteForm = ({ handleClose, notesSectionId, note }: AddNoteCardFormProps) => {
   const dispatch = useDispatch();
   const [selectedColor, setSelectedColor] = useState(theme.white);
 

@@ -1,6 +1,6 @@
 // make API calls here
 
-import api from '../lib/helpers/api';
+import api from '../lib/helpers/request';
 import {
   NewNotesSectionData,
   NotesSection
