@@ -4,19 +4,11 @@ import {
   ColorInputBlockWrapper,
   ColorLabelWrapper
 } from './ColorInputStyled';
-import { FormControlLabel, Typography } from '@material-ui/core';
+import { Typography } from '@material-ui/core';
 import { theme } from '../../theme';
 
-const colors = {
-  WHITE: theme.white,
-  ORANGE: theme.orange,
-  PINK: theme.pink,
-  BLUE: theme.blue,
-  GREEN: theme.green,
-};
-
-const ColorInput = ({selectedColor, setSelectedColor}: any) => {
-
+const ColorInput = ({selectedColor, setSelectedColor, type}: any) => {
+  const colors = theme.getColors(type);
   const handleChange = (event: any) => {
     setSelectedColor(event.target.dataset.color)
   };
@@ -29,7 +21,7 @@ const ColorInput = ({selectedColor, setSelectedColor}: any) => {
         </Typography>
       </ColorLabelWrapper>
       {
-        Object.values(colors).map((color) => <ColorInputWrapper
+        colors.map((color) => <ColorInputWrapper
           key={color}
           color={color}
           isChecked={selectedColor === color}

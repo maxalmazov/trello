@@ -3,10 +3,12 @@ export const initialData = {
     'sections/1': {
       id: 1,
       title: 'Section 1 Title',
+      color: '#dfe1e6',
     },
     'sections/2': {
       id: 2,
       title: 'Section 2 Title',
+      color: '#dfe1e6',
     }
   },
   notes: {

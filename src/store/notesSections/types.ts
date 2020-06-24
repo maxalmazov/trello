@@ -5,10 +5,12 @@ export interface NotesSections {
 export interface NotesSection {
   id: number;
   title: string;
+  color: string
 }
 
 export interface NewNotesSectionData {
   title: string;
+  color: string;
 }
 
 export enum ActionTypes {

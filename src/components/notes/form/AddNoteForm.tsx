@@ -55,7 +55,6 @@ const AddNoteForm = ({ handleClose, notesSectionId }: AddNoteCardFormProps) => {
       return errors;
     },
     onSubmit: (newNoteSectionData: NewNote) => {
-      console.log(newNoteSectionData);
       Object.assign(newNoteSectionData, {color: selectedColor});
 
       return addNoteList(newNoteSectionData)
@@ -113,6 +112,7 @@ const AddNoteForm = ({ handleClose, notesSectionId }: AddNoteCardFormProps) => {
             selectedColor={selectedColor}
             setSelectedColor={setSelectedColor}
             value={selectedColor}
+            type={'notes'}
           />
           <FormControlLabel
             control={

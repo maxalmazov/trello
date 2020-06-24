@@ -5,7 +5,7 @@ export const NotesSectionWrapper = styled(Grid)`
   min-width: 338px;
   margin: 5px;
   padding: 8px;
-  background: #dfe1e6;
+  background: ${props => props.color};
   border-radius: 4px;
   border: 1px solid rgba(0,0,0,0.12);
   box-shadow: 0 4px 5px -2px rgba(0,0,0,0.2),0px 7px 10px 1px rgba(0,0,0,0.14),0px 2px 16px 1px rgba(0,0,0,0.12);

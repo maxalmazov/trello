@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { useFormik } from 'formik';
 import {
@@ -12,6 +12,8 @@ import {
 import { addNotesSection as addNotesSectionAction } from '../../../store/notesSections/actions';
 import { AddNotesSectionFormWrapper } from './AddNotesSectionForm.styled';
 import { NewNotesSectionData } from '../../../store/notesSections/types';
+import ColorInput from '../../inputs/ColorInput';
+import { theme } from '../../../theme';
 
 interface AddNoteSectionFormProps {
   handleClose: () => void;
@@ -19,8 +21,10 @@ interface AddNoteSectionFormProps {
 
 const AddNoteSectionForm = ({ handleClose }: AddNoteSectionFormProps) => {
   const dispatch = useDispatch();
+  const [selectedColor, setSelectedColor] = useState(theme.white);
 
   const addNotesSection = (newNoteSectionData: NewNotesSectionData) => {
+    console.log(newNoteSectionData);
     handleClose();
     dispatch(addNotesSectionAction(newNoteSectionData));
   };
@@ -28,6 +32,7 @@ const AddNoteSectionForm = ({ handleClose }: AddNoteSectionFormProps) => {
   const formik = useFormik({
     initialValues: {
       title: '',
+      color: selectedColor,
     },
     validate: (newNoteSectionData: NewNotesSectionData) => {
       const errors = {};
@@ -38,7 +43,10 @@ const AddNoteSectionForm = ({ handleClose }: AddNoteSectionFormProps) => {
 
       return errors;
     },
-    onSubmit: (newNoteSectionData: NewNotesSectionData) => addNotesSection(newNoteSectionData),
+    onSubmit: (newNoteSectionData: NewNotesSectionData) => {
+      Object.assign(newNoteSectionData, {color: selectedColor});
+      addNotesSection(newNoteSectionData)
+    },
   });
 
 
@@ -56,6 +64,12 @@ const AddNoteSectionForm = ({ handleClose }: AddNoteSectionFormProps) => {
           fullWidth={true}
           error={Boolean(formik.errors.title)}
           helperText={formik.errors.title}
+        />
+        <ColorInput
+          selectedColor={selectedColor}
+          setSelectedColor={setSelectedColor}
+          value={selectedColor}
+          type={'notesSections'}
         />
       </DialogContent>
       <DialogActions>

@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 export const FooterContainerWrapper = styled.footer`
   width: 100%;
   margin-top: auto;
-  background-color: ${theme.blueLightend10};
+  background-color: ${theme.blueLightened10};
   padding: 0 24px;
   border-top: 1px solid ${theme.blueDarkened10};
 

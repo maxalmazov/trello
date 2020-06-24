@@ -1,10 +1,10 @@
 import { initialData } from '../../initialData';
 import { NewNote, Note, Notes } from '../../store/notes/types';
 import { NewNotesSectionData } from '../../store/notesSections/types';
+import { NOTES, NOTES_SECTIONS, IDS_COUNTER } from '../../store/types';
 
-const NOTES = 'notes';
-const NOTES_SECTIONS = 'notesSections';
-const IDS_COUNTER = 'idsCounter';
+const NOTES_IRI = 'notes/';
+const NOTES_SECTIONS_IRI = 'sections/';
 
 export const initialize = () => {
   if (localStorage.getItem(NOTES_SECTIONS) === null) {
@@ -46,7 +46,7 @@ export const getNotesBySectionId = (notesSectionId: number) => {
   const arrayOfNotes = Object.values(allNotes).filter((note: Note) => note.sectionId === notesSectionId);
 
   for (let i = 0; i < arrayOfNotes.length; i++) {
-    Object.assign(notes, {['notes/' + arrayOfNotes[i].id]: arrayOfNotes[i]})
+    Object.assign(notes, {[NOTES_IRI + arrayOfNotes[i].id]: arrayOfNotes[i]})
   }
 
   return notes;
@@ -60,7 +60,7 @@ export const addNotesSection = (newNotesSectionData: NewNotesSectionData) => {
     ...newNotesSectionData,
   };
   const notesSectionToSave = {
-    ['sections/' + newNotesSection.id]: newNotesSection
+    [NOTES_SECTIONS_IRI + newNotesSection.id]: newNotesSection
   };
 
   pushItem(NOTES_SECTIONS, notesSectionToSave);
@@ -74,7 +74,7 @@ export const addNotesSection = (newNotesSectionData: NewNotesSectionData) => {
 export const removeNotesSection = (notesSectionId: number) => {
   // TODO: remove related notes
 
-  const notesSectionIri = 'sections/' + notesSectionId;
+  const notesSectionIri = NOTES_SECTIONS_IRI + notesSectionId;
   removeItem(NOTES_SECTIONS, notesSectionIri);
 
   return notesSectionIri;
@@ -99,7 +99,7 @@ export const addNote = (noteData: NewNote) => {
 };
 
 export const removeNote = (noteId: number) => {
-  const noteIri = 'notes/' + noteId;
+  const noteIri = NOTES_SECTIONS_IRI + noteId;
   removeItem(NOTES, noteIri);
 
   return noteIri;

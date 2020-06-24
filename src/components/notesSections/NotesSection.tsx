@@ -14,7 +14,7 @@ import AddNote from '../notes/form/AddNote';
 import { loadNotesBySectionId } from '../../store/notes/actions';
 import { getNotesBySectionId } from '../../store/notes/selectors';
 
-const NotesSectionComponent = ({ id, title}: NotesSection) => {
+const NotesSectionComponent = ({ id, title, color}: NotesSection) => {
   const dispatch = useDispatch();
   const notes: Notes = useSelector(getNotesBySectionId);
 
@@ -22,7 +22,7 @@ const NotesSectionComponent = ({ id, title}: NotesSection) => {
     dispatch(loadNotesBySectionId(id))
   }, [id]);
   return (
-    <NotesSectionWrapper>
+    <NotesSectionWrapper color={color}>
       <NotesSectionHeaderWrapper>
         <NotesSectionHeader>
           {title}
