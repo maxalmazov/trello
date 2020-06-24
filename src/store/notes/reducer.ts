@@ -31,6 +31,11 @@ const reducer: Reducer<Notes, Action> = (state: Notes = initialState, action: Ac
         ...state,
       };
 
+    case ActionTypes.EDIT_NOTE_SUCCESS:
+      return {
+        ...state,
+      };
+
     default:
       return state;
   }

@@ -3,7 +3,7 @@ import {
   addNoteSuccess,
   removeNoteSuccess,
 } from './actionCreators'
-import { NewNote } from './types';
+import { NewNote, Note } from './types';
 import controllers from '../../controllers';
 
 export const loadNotesBySectionId = (notesSectionId: number) => async (dispatch: any) => {
@@ -33,10 +33,10 @@ export const removeNote = (noteId: number) => async (dispatch: any) => {
   }
 };
 
-export const editNote = (note: NewNote) => async (dispatch: any) => {
+export const editNote = (note: Note) => async (dispatch: any) => {
   try {
-    const newNote = controllers.notes.addNote(note);
-    dispatch(addNoteSuccess(newNote));
+    const updatedNote = controllers.notes.editNote(note);
+    // dispatch(addNoteSuccess(newNote));
   } catch (error) {
     console.log(error);
   }

@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { Dialog, Typography } from '@material-ui/core';
 
-import { NewNoteButton } from '../../notesSections/NotesSection.styled';
-import AddNoteForm from './AddNoteForm';
+import { NewNoteButton } from '../notesSections/NotesSection.styled';
+import NoteForm from './form/NoteForm';
 
 interface AddNoteProps {
   notesSectionId: number
@@ -21,7 +21,7 @@ const AddNote = ({ notesSectionId }: AddNoteProps) => {
         <Typography variant={'button'}>+ Add new card</Typography>
       </NewNoteButton>
       <Dialog open={open} onClose={handleOpen} aria-labelledby={'form-dialog-title'}>
-        <AddNoteForm handleClose={handleOpen} notesSectionId={notesSectionId}/>
+        <NoteForm handleClose={handleOpen} notesSectionId={notesSectionId}/>
       </Dialog>
     </>
   );

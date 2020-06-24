@@ -10,7 +10,7 @@ import {
   NotesSectionWrapper,
 } from './NotesSection.styled';
 import NotesSectionAction from './NotesSectionAction';
-import AddNote from '../notes/form/AddNote';
+import AddNote from '../notes/AddNote';
 import { loadNotesBySectionId } from '../../store/notes/actions';
 import { getNotesBySectionId } from '../../store/notes/selectors';
 

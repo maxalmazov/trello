@@ -11,8 +11,8 @@ import {
   FormControlLabel,
 } from '@material-ui/core';
 
-import { addNote } from '../../../store/notes/actions';
-import { AddNoteCardFormWrapper } from './AddNoteForm.styled';
+import { addNote, editNote } from '../../../store/notes/actions';
+import { AddNoteCardFormWrapper } from './NoteForm.styled';
 import ColorInput from '../../inputs/ColorInput'
 import { TextFieldInputWrapper } from '../../inputs/TextInput.styled';
 import { NewNote, Note } from '../../../store/notes/types';
@@ -24,41 +24,53 @@ interface AddNoteCardFormProps {
   note?: Note
 }
 
-const AddNoteForm = ({ handleClose, notesSectionId, note }: AddNoteCardFormProps) => {
+const NoteForm = ({ handleClose, notesSectionId, note }: AddNoteCardFormProps) => {
   const dispatch = useDispatch();
-  const [selectedColor, setSelectedColor] = useState(theme.white);
+  const [selectedColor, setSelectedColor] = useState(note ? note.color : theme.white);
 
-  const addNoteList = (newNoteData: NewNote) => {
+  const addNote = (newNoteData: NewNote) => {
     handleClose();
     dispatch(addNote(newNoteData));
+  };
+
+  const handleNote = (newNoteData: NewNote) => {
+    handleClose();
+    dispatch(
+      note ?
+        editNote({
+          id: note.id,
+          ...newNoteData
+        }) :
+        addNote(newNoteData)
+    );
   };
 
   const formik = useFormik({
     initialValues: {
       sectionId: notesSectionId,
-      title: '',
-      description: '',
-      color: selectedColor,
-      dueTo: new Date().toISOString().substring(0, 10),
-      isCompleted: false,
+      title: note ? note.title : '',
+      description: note ? note.description : '',
+      color: note ? note.color : selectedColor,
+      dueTo: note ? note.dueTo :new Date().toISOString().substring(0, 10),
+      isCompleted: note ? note.isCompleted : false,
     },
-    validate: (newNoteSectionData: NewNote) => {
+    validate: (newNoteData: NewNote) => {
       const errors = {};
 
-      if (newNoteSectionData.title.length < 1) {
+      if (newNoteData.title.length < 1) {
         Object.assign(errors, {title: 'Title can not be empty'});
       }
 
-      if (newNoteSectionData.description.length < 1) {
+      if (newNoteData.description.length < 1) {
         Object.assign(errors, {description: 'Description can not be empty'});
       }
 
       return errors;
     },
-    onSubmit: (newNoteSectionData: NewNote) => {
-      Object.assign(newNoteSectionData, {color: selectedColor});
+    onSubmit: (newNoteData: NewNote) => {
+      Object.assign(newNoteData, {color: selectedColor});
 
-      return addNoteList(newNoteSectionData)
+      return handleNote(newNoteData);
     },
   });
 
@@ -140,4 +152,4 @@ const AddNoteForm = ({ handleClose, notesSectionId, note }: AddNoteCardFormProps
   );
 };
 
-export default AddNoteForm;
+export default NoteForm;

@@ -8,11 +8,11 @@ import {
   editNote as editNoteAction,
 
 } from '../../store/notes/actions';
-import AddNote from './form/AddNote';
+import AddNote from './AddNote';
 import { Note } from '../../store/notes/types';
 import { NewNoteButton } from '../notesSections/NotesSection.styled';
 import { Dialog, Typography } from '@material-ui/core';
-import AddNoteForm from './form/AddNoteForm';
+import NoteForm from './form/NoteForm';
 
 interface NoteActionProps {
   note: Note;
@@ -40,10 +40,10 @@ const NoteAction = ({ note }: NoteActionProps) => {
       <NoteActionWrapper>
         <span onClick={handleOpen}>
           <EditIcon fontSize={'small'} />
-          <Dialog open={open} onClose={handleOpen} aria-labelledby={'form-dialog-title'}>
-            <AddNoteForm handleClose={handleOpen} notesSectionId={note.id} note={note}/>
-          </Dialog>
         </span>
+        <Dialog open={open} onClose={handleOpen} aria-labelledby={'form-dialog-title'}>
+          <NoteForm handleClose={handleOpen} notesSectionId={note.id} note={note}/>
+        </Dialog>
         <span onClick={removeNote}>
           <DeleteIcon fontSize={'small'} />
         </span>

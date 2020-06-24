@@ -106,21 +106,21 @@ export const removeNote = (noteId: number) => {
 };
 
 export const editNote = (noteData: NewNote) => {
-  const lastNoteId = getItem(IDS_COUNTER).lastNoteId;
-  const newNote = {
-    id: lastNoteId + 1,
-    ...noteData,
-  };
-  const noteToSave = {
-    ['notes/' + newNote.id]: newNote,
-  };
-
-  pushItem(NOTES, noteToSave);
-  pushItem(IDS_COUNTER, {
-    lastNoteId: lastNoteId + 1
-  });
-
-  return noteToSave;
+  // const lastNoteId = getItem(IDS_COUNTER).lastNoteId;
+  // const newNote = {
+  //   id: lastNoteId + 1,
+  //   ...noteData,
+  // };
+  // const noteToSave = {
+  //   ['notes/' + newNote.id]: newNote,
+  // };
+  //
+  // pushItem(NOTES, noteToSave);
+  // pushItem(IDS_COUNTER, {
+  //   lastNoteId: lastNoteId + 1
+  // });
+  //
+  // return noteToSave;
 };
 
 export default {
