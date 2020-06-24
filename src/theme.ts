@@ -11,12 +11,16 @@ export const theme = {
   black: '#000000',
   orange: '#ffbb37',
   orangeDarkened10: '#e6a21e',
+  orangeLightened10: '#ffd551',
   pink: '#ff768f',
   pinkDarkened10: '#e65d76',
+  pinkLightend10: '#ff90a9',
   blue: '#4d88ff',
   blueDarkened10: '#346fe6',
+  blueLightend10: '#4e89ff',
   green: '#43dc9c',
   greenDarkened10: '#2ac383',
+  greenLightend10: '#5df6b6',
   getDarkened10: (color: string|undefined) => {
     switch (color) {
       case theme.white:

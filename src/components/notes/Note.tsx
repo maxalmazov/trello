@@ -5,10 +5,11 @@ import { Done, Close } from '@material-ui/icons';
 import { Note } from '../../store/notes/types';
 import {
   NoteWrapper,
-  NoteActionsWrapper,
+  NoteFooterWrapper,
   NoteIsCompletedWrapper,
-  NoteDueToWrapper,
+  NoteDueToWrapper, NoteHeaderWrapper, NoteTitleWrapper, NoteActionsWrapper,
 } from './Note.styled';
+import NoteAction from './NoteAction';
 
 interface NoteComponentProps {
   note: Note,
@@ -45,13 +46,20 @@ const NoteComponent = ({ note }: NoteComponentProps) => {
 
   return (
       <NoteWrapper key={'noteId' + note.id} color={note.color}>
-        <Typography variant={'h6'}>
-          {note.title}
-        </Typography>
+        <NoteHeaderWrapper>
+          <NoteTitleWrapper>
+            <Typography variant={'h6'}>
+              {note.title}
+            </Typography>
+          </NoteTitleWrapper>
+          <NoteActionsWrapper>
+            <NoteAction noteId={note.id}/>
+          </NoteActionsWrapper>
+        </NoteHeaderWrapper>
         {
           renderNoteDescription(note.description)
         }
-        <NoteActionsWrapper>
+        <NoteFooterWrapper>
           <NoteDueToWrapper>
             <Typography variant={'caption'}>
               Due to: {new Date(note.dueTo).toLocaleDateString()}
@@ -65,7 +73,7 @@ const NoteComponent = ({ note }: NoteComponentProps) => {
               note.isCompleted ? <Done/> : <Close color={'error'}/>
             }
           </NoteIsCompletedWrapper>
-        </NoteActionsWrapper>
+        </NoteFooterWrapper>
       </NoteWrapper>
   );
 };

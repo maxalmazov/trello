@@ -1,12 +1,12 @@
-import styled, { media, css } from '../../../theme';
+import styled, { media, css, theme } from '../../../theme';
 import { Link } from 'react-router-dom';
 
 export const FooterContainerWrapper = styled.footer`
   width: 100%;
   margin-top: auto;
-  background-color: #e6e0e0;
+  background-color: ${theme.blueLightend10};
   padding: 0 24px;
-  border-top: 1px solid #c6c9ce;
+  border-top: 1px solid ${theme.blueDarkened10};
 
   ${media.desktopM`
     padding: 0 24px;
@@ -66,7 +66,7 @@ export const FooterNavItem = styled.li`
   display: flex;
   flex-direction: row;
   padding-right: 15px;
-  color: #c6c9ce;
+  color: ${theme.blueDarkened10};
 `;
 
 export const FooterNavLink = styled(Link)`
@@ -77,6 +77,6 @@ export const FooterNavLink = styled(Link)`
   color: #3d3d3d;
 
   &:hover {
-    color: #165fef;
+    color: ${theme.orangeLightened10};
   }
 `;

@@ -1,8 +1,8 @@
-import styled, { media, css } from '../../../theme';
+import styled, { media, css, theme } from '../../../theme';
 
 export const Header = styled.section`
   width: 100vw;
-  background-color: #9a9b94;
+  background-color: ${theme.blue};
   height: 80px;
   display: flex;
   align-items: center;

@@ -1,8 +1,19 @@
 import styled from 'styled-components';
 import Card from '@material-ui/core/Card';
-import { CardActions } from '@material-ui/core';
 import { theme } from '../../theme';
 
+export const NoteActionsWrapper = styled.div`
+  justify-content: flex-end;
+  display: none;
+`;
+
+export const NoteActionWrapper = styled.div`
+  padding: 4px;
+  &:hover {
+    cursor: pointer;
+  }
+  display: flex;
+`;
 
 export const NoteWrapper = styled(Card)`
   && {
@@ -13,11 +24,24 @@ export const NoteWrapper = styled(Card)`
     background-color: ${props => props.color};
     &:hover {
       background-color: ${props => theme.getDarkened10(props.color)};
+      ${NoteActionsWrapper} {
+        display: block;
+      }
     }
   }
 `;
 
-export const NoteActionsWrapper = styled(CardActions)`
+export const NoteHeaderWrapper = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+`;
+
+export const NoteTitleWrapper = styled.div`
+  justify-content: flex-start;
+`;
+
+export const NoteFooterWrapper = styled.div`
   display: flex;
   font-size: 20px;
   flex-direction: row;
