@@ -14,7 +14,7 @@ import AddNote from '../notes/form/AddNote';
 import { loadNotesBySectionId } from '../../store/notes/actions';
 import { getNotesBySectionId } from '../../store/notes/selectors';
 
-const NotesSectionComponent = ({ id, title, notesIds}: NotesSection) => {
+const NotesSectionComponent = ({ id, title}: NotesSection) => {
   const dispatch = useDispatch();
   const notes: Notes = useSelector(getNotesBySectionId);
 
@@ -29,13 +29,12 @@ const NotesSectionComponent = ({ id, title, notesIds}: NotesSection) => {
         </NotesSectionHeader>
         <NotesSectionAction notesSectionId={id}/>
       </NotesSectionHeaderWrapper>
-      <NoteComponent notes={notes} sectionId={id}/>
-        {/*{*/}
-        {/*  notes &&*/}
-        {/*  Object.values(notes).map(*/}
-        {/*    (note: Note) => notesIds.includes('notes/' + note.id) ? () : null*/}
-        {/*  )*/}
-        {/*}*/}
+        {
+          notes &&
+          Object.values(notes).map(
+            (note: Note) => note.sectionId === id ? (<NoteComponent key={'notes/' + note.id} note={note}/>) : null
+          )
+        }
         <AddNote notesSectionId={id}/>
     </NotesSectionWrapper>
   );

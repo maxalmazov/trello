@@ -1,7 +1,4 @@
-/* eslint-disable @typescript-eslint/no-object-literal-type-assertion, @typescript-eslint/no-explicit-any */
-
 import * as styledComponents from 'styled-components';
-import { ThemedCssFunction } from 'styled-components';
 
 export interface ThemeInterface {
   primaryColor?: string;
@@ -10,11 +7,30 @@ export interface ThemeInterface {
 export const theme = {
   primaryColor: '#567',
   white: '#ffffff',
+  whiteDarkened10: '#e6e6e6',
   black: '#000000',
   orange: '#ffbb37',
+  orangeDarkened10: '#e6a21e',
   pink: '#ff768f',
+  pinkDarkened10: '#e65d76',
   blue: '#4d88ff',
+  blueDarkened10: '#346fe6',
   green: '#43dc9c',
+  greenDarkened10: '#2ac383',
+  getDarkened10: (color: string|undefined) => {
+    switch (color) {
+      case theme.white:
+        return theme.whiteDarkened10;
+      case theme.orange:
+        return theme.orangeDarkened10;
+      case theme.pink:
+        return theme.pinkDarkened10;
+      case theme.blue:
+        return theme.blueDarkened10;
+      case theme.green:
+        return theme.greenDarkened10;
+    }
+  },
 };
 
 export const GlobalStyles = styledComponents.createGlobalStyle`

@@ -24,7 +24,7 @@ export const initialData = {
       description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
       dueTo: new Date().toISOString().substring(0, 10),
       isCompleted: true,
-      color: '#fff',
+      color: '#ffffff',
     },
     'notes/2': {
       id: 2,
@@ -33,7 +33,7 @@ export const initialData = {
       description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
       dueTo: new Date().toISOString().substring(0, 10),
       isCompleted: false,
-      color: '#fff',
+      color: '#ffffff',
     },
     'notes/3': {
       id: 3,
@@ -42,7 +42,7 @@ export const initialData = {
       description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
       dueTo: new Date().toISOString().substring(0, 10),
       isCompleted: false,
-      color: '#fff',
+      color: '#ffffff',
     },
   },
   idsCounter: {

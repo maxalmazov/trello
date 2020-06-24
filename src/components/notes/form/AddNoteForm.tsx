@@ -45,16 +45,17 @@ const AddNoteForm = ({ handleClose, notesSectionId }: AddNoteCardFormProps) => {
       const errors = {};
 
       if (newNoteSectionData.title.length < 1) {
-        // Object.assign(errors, {title: 'Title can not be empty'});
+        Object.assign(errors, {title: 'Title can not be empty'});
       }
 
       if (newNoteSectionData.description.length < 1) {
-        // Object.assign(errors, {description: 'Description can not be empty'});
+        Object.assign(errors, {description: 'Description can not be empty'});
       }
 
       return errors;
     },
     onSubmit: (newNoteSectionData: NewNote) => {
+      console.log(newNoteSectionData);
       Object.assign(newNoteSectionData, {color: selectedColor});
 
       return addNoteList(newNoteSectionData)
@@ -116,15 +117,14 @@ const AddNoteForm = ({ handleClose, notesSectionId }: AddNoteCardFormProps) => {
           <FormControlLabel
             control={
               <Checkbox
-                id={'isComplete'}
-                checked={formik.values.isCompleted}
+                id={'isCompleted'}
+                value={formik.values.isCompleted}
                 onChange={formik.handleChange}
               />
             }
-            label={'Is complete'}
+            label={'Is completed'}
             labelPlacement={'start'}
           />
-
         </TextFieldInputWrapper>
       </DialogContent>
       <DialogActions>

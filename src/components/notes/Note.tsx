@@ -1,8 +1,8 @@
-import React , { useState, useEffect } from 'react';
+import React , { useState } from 'react';
 import { CardHeader, Collapse, Link, Typography, } from '@material-ui/core';
 import { Done, Close } from '@material-ui/icons';
 
-import { Note, Notes } from '../../store/notes/types';
+import { Note } from '../../store/notes/types';
 import {
   NoteWrapper,
   NoteActionsWrapper,
@@ -11,28 +11,27 @@ import {
 } from './Note.styled';
 
 interface NoteComponentProps {
-  notes: Notes,
-  sectionId: number,
+  note: Note,
 }
 
-const NoteComponent = ({notes, sectionId}: any) => {
+const NoteComponent = ({ note }: NoteComponentProps) => {
   const PREVIEW_TEXT_LENGTH = 350;
-  const [checked, setChecked] = useState(false);
+  const [isCollapsed, setIsCollapsed] = useState(false);
 
   const handleChange = () => {
-    setChecked((prev) => !prev);
+    setIsCollapsed((prev) => !prev);
   };
 
   const renderNoteDescription = (description: string) => {
     if (description.length > PREVIEW_TEXT_LENGTH) {
       return (
         <>
-          <Collapse in={checked} collapsedHeight={180}>
+          <Collapse in={isCollapsed} collapsedHeight={170}>
             <Typography variant={'body1'}>
               {description}
             </Typography>
           </Collapse>
-          <Link onClick={handleChange}>{!checked ? '...read more' : 'collapse↑'}</Link>
+          <Link onClick={handleChange}>{!isCollapsed ? '...read more' : 'collapse↑'}</Link>
         </>
       );
     }
@@ -45,36 +44,29 @@ const NoteComponent = ({notes, sectionId}: any) => {
   };
 
   return (
-    <>
-      {
-        notes &&
-        Object.values(notes).map(
-          (note: any) => note.sectionId == sectionId ? (
-            <NoteWrapper key={'noteId' + note.id} color={note.color}>
-              <CardHeader title={note.title}/>
-              {
-                renderNoteDescription(note.description)
-              }
-              <NoteActionsWrapper>
-                <NoteDueToWrapper>
-                  <Typography variant={'caption'}>
-                    Due to: {new Date(note.dueTo).toLocaleDateString()}
-                  </Typography>
-                </NoteDueToWrapper>
-                <NoteIsCompletedWrapper>
-                  <Typography variant={'caption'}>
-                    Is completed:
-                  </Typography>
-                  {
-                    note.isCompleted ? <Done/> : <Close color={'error'}/>
-                  }
-                </NoteIsCompletedWrapper>
-              </NoteActionsWrapper>
-            </NoteWrapper>
-          ) : null
-        )
-      }
-    </>
+      <NoteWrapper key={'noteId' + note.id} color={note.color}>
+        <Typography variant={'h6'}>
+          {note.title}
+        </Typography>
+        {
+          renderNoteDescription(note.description)
+        }
+        <NoteActionsWrapper>
+          <NoteDueToWrapper>
+            <Typography variant={'caption'}>
+              Due to: {new Date(note.dueTo).toLocaleDateString()}
+            </Typography>
+          </NoteDueToWrapper>
+          <NoteIsCompletedWrapper>
+            <Typography variant={'caption'}>
+              Is completed:
+            </Typography>
+            {
+              note.isCompleted ? <Done/> : <Close color={'error'}/>
+            }
+          </NoteIsCompletedWrapper>
+        </NoteActionsWrapper>
+      </NoteWrapper>
   );
 };
 export default NoteComponent;

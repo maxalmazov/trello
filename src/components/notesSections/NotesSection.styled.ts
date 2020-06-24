@@ -21,7 +21,7 @@ export const NotesSectionHeaderWrapper = styled(Box)`
 
 export const NotesSectionHeader = styled(Box)`
   padding: 12px;
-  font-size: 1.3em;
+  font-size: 1.4em;
 `;
 
 export const NewNoteButton = styled(Box)`
