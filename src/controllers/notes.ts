@@ -12,7 +12,8 @@ export const addNote = (note: NewNote) => {
   return api.addNote(note);
 };
 
-export const removeNote = (note: number) => {
+export const removeNote = (noteId: number) => {
+  return api.removeNote(noteId)
 
 };
 

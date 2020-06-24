@@ -24,10 +24,10 @@ export const addNote = (note: NewNote) => async (dispatch: any) => {
   }
 };
 
-export const removeNote = (noteSectionId: number) => async (dispatch: any) => {
+export const removeNote = (noteId: number) => async (dispatch: any) => {
   try {
-    // const notes = controllers.notes.removeNote(noteSectionId);
-    // dispatch(removeNoteSuccess(notes));
+    const noteUri = controllers.notes.removeNote(noteId);
+    dispatch(removeNoteSuccess(noteUri));
   } catch (error) {
     console.log(error);
   }

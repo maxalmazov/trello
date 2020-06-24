@@ -5,5 +5,5 @@ export const loadNotesSuccess = (notes: Notes) => action(ActionTypes.LOAD_NOTES_
 
 export const addNoteSuccess = (newNote: Notes) =>
   action(ActionTypes.ADD_NOTE_SUCCESS, newNote);
-export const removeNoteSuccess = (data: any) => action(ActionTypes.REMOVE_NOTE_SUCCESS, data);
+export const removeNoteSuccess = (noteId: string) => action(ActionTypes.REMOVE_NOTE_SUCCESS, noteId);
 

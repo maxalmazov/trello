@@ -91,15 +91,18 @@ export const addNote = (noteData: NewNote) => {
   };
 
   pushItem(NOTES, noteToSave);
-
-  const notesSections = getItem(NOTES_SECTIONS);
-  notesSections['sections/' + newNote.sectionId].notesIds.push('notes/' + newNote.id);
-  saveItem(NOTES_SECTIONS, notesSections);
   pushItem(IDS_COUNTER, {
     lastNoteId: lastNoteId + 1
   });
 
   return noteToSave;
+};
+
+export const removeNote = (noteId: number) => {
+  const noteIri = 'notes/' + noteId;
+  removeItem(NOTES, noteIri);
+
+  return noteIri;
 };
 
 export default {
@@ -110,4 +113,5 @@ export default {
   addNotesSection,
   removeNotesSection,
   addNote,
+  removeNote,
 }

@@ -19,24 +19,17 @@ const reducer: Reducer<Notes, Action> = (state: Notes = initialState, action: Ac
       };
 
     case ActionTypes.ADD_NOTE_SUCCESS:
-      // console.log(state);
-      // console.log(action);
-      // console.log({
-      //   ...state,
-      //   ...action.payload
-      // });
-
       return {
         ...state,
         ...action.payload
       };
 
-    // case ActionTypes.REMOVE_NOTE_SUCCESS:
-    //   state.notesList = action.payload.notesList;
-    //
-    //   return {
-    //     ...state,
-    //   };
+    case ActionTypes.REMOVE_NOTE_SUCCESS:
+      delete state[action.payload];
+
+      return {
+        ...state,
+      };
 
     default:
       return state;

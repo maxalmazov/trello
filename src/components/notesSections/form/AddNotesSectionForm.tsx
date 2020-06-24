@@ -28,7 +28,6 @@ const AddNoteSectionForm = ({ handleClose }: AddNoteSectionFormProps) => {
   const formik = useFormik({
     initialValues: {
       title: '',
-      notesIds: [],
     },
     validate: (newNoteSectionData: NewNotesSectionData) => {
       const errors = {};

@@ -3,17 +3,10 @@ export const initialData = {
     'sections/1': {
       id: 1,
       title: 'Section 1 Title',
-      notesIds: [
-        'notes/1',
-        'notes/3',
-      ],
     },
     'sections/2': {
       id: 2,
       title: 'Section 2 Title',
-      notesIds: [
-        'notes/2'
-      ]
     }
   },
   notes: {
