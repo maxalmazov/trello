@@ -32,6 +32,8 @@ const reducer: Reducer<Notes, Action> = (state: Notes = initialState, action: Ac
       };
 
     case ActionTypes.EDIT_NOTE_SUCCESS:
+      state[action.payload.iri] = action.payload.note;
+
       return {
         ...state,
       };

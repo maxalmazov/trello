@@ -99,28 +99,21 @@ export const addNote = (noteData: NewNote) => {
 };
 
 export const removeNote = (noteId: number) => {
-  const noteIri = NOTES_SECTIONS_IRI + noteId;
+  const noteIri = NOTES_IRI + noteId;
   removeItem(NOTES, noteIri);
 
   return noteIri;
 };
 
-export const editNote = (noteData: NewNote) => {
-  // const lastNoteId = getItem(IDS_COUNTER).lastNoteId;
-  // const newNote = {
-  //   id: lastNoteId + 1,
-  //   ...noteData,
-  // };
-  // const noteToSave = {
-  //   ['notes/' + newNote.id]: newNote,
-  // };
-  //
-  // pushItem(NOTES, noteToSave);
-  // pushItem(IDS_COUNTER, {
-  //   lastNoteId: lastNoteId + 1
-  // });
-  //
-  // return noteToSave;
+export const editNote = (note: Note) => {
+  let notes = getItem(NOTES);
+  notes[NOTES_IRI + note.id] = note;
+  saveItem(NOTES, notes);
+
+  return {
+    note: note,
+    iri: NOTES_IRI + note.id,
+  };
 };
 
 export default {

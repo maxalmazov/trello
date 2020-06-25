@@ -12,8 +12,6 @@ export interface Note {
   color: string;
 }
 
-// TODO: update all below
-
 export interface NewNote {
   title: string;
   sectionId: number;
@@ -21,6 +19,11 @@ export interface NewNote {
   dueTo: string;
   isCompleted: boolean;
   color: string;
+}
+
+export interface EditedNote {
+  note: Note;
+  iri: string;
 }
 
 export enum ActionTypes {

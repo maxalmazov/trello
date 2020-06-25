@@ -1,7 +1,7 @@
 import {
   loadNotesSuccess,
   addNoteSuccess,
-  removeNoteSuccess,
+  removeNoteSuccess, editNoteSuccess,
 } from './actionCreators'
 import { NewNote, Note } from './types';
 import controllers from '../../controllers';
@@ -36,7 +36,7 @@ export const removeNote = (noteId: number) => async (dispatch: any) => {
 export const editNote = (note: Note) => async (dispatch: any) => {
   try {
     const updatedNote = controllers.notes.editNote(note);
-    // dispatch(addNoteSuccess(newNote));
+    dispatch(editNoteSuccess(updatedNote));
   } catch (error) {
     console.log(error);
   }

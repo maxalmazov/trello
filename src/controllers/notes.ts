@@ -16,7 +16,7 @@ export const removeNote = (noteId: number) => {
 };
 
 export const editNote = (note: Note) => {
-  return request.editNote(note)
+  return request.editNote(note);
 };
 
 export default {

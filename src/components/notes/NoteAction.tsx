@@ -30,11 +30,6 @@ const NoteAction = ({ note }: NoteActionProps) => {
     dispatch(removeNoteAction(note.id));
   };
 
-  const editNote = () => {
-
-    dispatch(editNoteAction(note));
-  };
-
   return (
     <>
       <NoteActionWrapper>
@@ -42,7 +37,7 @@ const NoteAction = ({ note }: NoteActionProps) => {
           <EditIcon fontSize={'small'} />
         </span>
         <Dialog open={open} onClose={handleOpen} aria-labelledby={'form-dialog-title'}>
-          <NoteForm handleClose={handleOpen} notesSectionId={note.id} note={note}/>
+          <NoteForm handleClose={handleOpen} notesSectionId={note.sectionId} note={note}/>
         </Dialog>
         <span onClick={removeNote}>
           <DeleteIcon fontSize={'small'} />

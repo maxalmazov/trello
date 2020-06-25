@@ -21,17 +21,12 @@ import { theme } from '../../../theme';
 interface AddNoteCardFormProps {
   handleClose: () => void;
   notesSectionId: number;
-  note?: Note
+  note?: Note|null
 }
 
-const NoteForm = ({ handleClose, notesSectionId, note }: AddNoteCardFormProps) => {
+const NoteForm = ({ handleClose, notesSectionId, note = null }: AddNoteCardFormProps) => {
   const dispatch = useDispatch();
   const [selectedColor, setSelectedColor] = useState(note ? note.color : theme.white);
-
-  const addNote = (newNoteData: NewNote) => {
-    handleClose();
-    dispatch(addNote(newNoteData));
-  };
 
   const handleNote = (newNoteData: NewNote) => {
     handleClose();
