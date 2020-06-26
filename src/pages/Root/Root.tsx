@@ -8,10 +8,12 @@ import Footer from './Footer/Footer.container';
 import Board from '../Board/Board.container';
 import { loadNotesSections } from '../../store/notesSections/actions';
 import { getNotesSection } from '../../store/notesSections/selectors';
+import { NotesSections } from '../../store/notesSections/types';
 
 const HomeComponent: React.FC = () => {
   const dispatch = useDispatch();
-  const notesSections = useSelector(getNotesSection);
+  const notesSections: NotesSections = useSelector(getNotesSection);+
+    console.log(notesSections);
 
   useEffect(() => {
     dispatch(loadNotesSections())
@@ -22,7 +24,7 @@ const HomeComponent: React.FC = () => {
       <GlobalStyles/>
       <Wrapper>
         <Header/>
-        <Board notesSections={notesSections}/>
+        <Board {...notesSections}/>
         <Footer/>
       </Wrapper>
     </>

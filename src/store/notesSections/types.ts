@@ -1,11 +1,21 @@
 export interface NotesSections {
-  [notesSectionId: string]: NotesSection;
+  data: NotesSectionWithIri,
+  order: string[],
 }
 
 export interface NotesSection {
   id: number;
   title: string;
   color: string
+}
+
+export interface NotesSectionWithIri {
+  [notesSectionId: string]: NotesSection;
+}
+
+export interface AddedNotesSection {
+  notesSection: NotesSectionWithIri;
+  iri: string;
 }
 
 export interface NewNotesSectionData {

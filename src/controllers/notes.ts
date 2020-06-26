@@ -4,6 +4,8 @@ import { NewNote, Note } from '../store/notes/types';
 import request from '../lib/helpers/request';
 
 export const getNotesBySectionId = (notesSectionId: number) => {
+  request.initialize();
+
   return request.getNotesBySectionId(notesSectionId);
 };
 

@@ -19,20 +19,22 @@ const reducer: Reducer<Notes, Action> = (state: Notes = initialState, action: Ac
       };
 
     case ActionTypes.ADD_NOTE_SUCCESS:
+      Object.assign(state.data, action.payload.note);
+      state.order.push(action.payload.iri);
+
       return {
         ...state,
-        ...action.payload
       };
 
     case ActionTypes.REMOVE_NOTE_SUCCESS:
-      delete state[action.payload];
+      delete state.data[action.payload];
 
       return {
         ...state,
       };
 
     case ActionTypes.EDIT_NOTE_SUCCESS:
-      state[action.payload.iri] = action.payload.note;
+      state.data[action.payload.iri] = action.payload.note;
 
       return {
         ...state,

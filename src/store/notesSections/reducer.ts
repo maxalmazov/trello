@@ -22,13 +22,17 @@ const reducer: Reducer<NotesSections, Action> = (state: NotesSections = initialS
       };
 
     case ActionTypes.ADD_NOTES_SECTION_SUCCESS:
+      Object.assign(state.data, action.payload.notesSection);
+      state.order.push(action.payload.iri);
+
       return {
         ...state,
-        ...action.payload
       };
 
     case ActionTypes.REMOVE_NOTES_SECTION_SUCCESS:
-      delete state[action.payload];
+      console.log(state, action);
+      // TODO
+      delete state.data['sections/1'];
 
       return {
         ...state,

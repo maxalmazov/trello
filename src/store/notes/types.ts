@@ -1,5 +1,6 @@
 export interface Notes {
-  [noteId: string]: Note;
+  data: NoteWithIri,
+  order: string[],
 }
 
 export interface Note {
@@ -12,13 +13,22 @@ export interface Note {
   color: string;
 }
 
+export interface NoteWithIri {
+  [noteId: string]: Note;
+}
+
 export interface NewNote {
-  title: string;
   sectionId: number;
+  title: string;
   description: string;
   dueTo: string;
   isCompleted: boolean;
   color: string;
+}
+
+  export interface AddedNote {
+  note: NoteWithIri,
+  iri: string,
 }
 
 export interface EditedNote {

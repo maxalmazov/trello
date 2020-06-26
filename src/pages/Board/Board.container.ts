@@ -1,14 +1,13 @@
 import { connect } from 'react-redux';
 
 import Component from './Board';
-import { NotesSection } from '../../store/notesSections/types';
+import { State } from '../../store/types';
 
-interface State {
-  notesSection: NotesSection
-}
 
-const mapStateToProps = (state: State) => ({
-  ...state.notesSection,
-});
+const mapStateToProps = (state: State) => {
+  console.log(state);
+  return({
+  ...state.notesSections
+})};
 
 export default connect(mapStateToProps)(Component);

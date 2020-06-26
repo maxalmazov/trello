@@ -44,8 +44,8 @@ const NotesSectionComponent = ({ id, title, color}: NotesSection) => {
         <NotesSectionAction notesSectionId={id}/>
       </NotesSectionHeaderWrapper>
       {
-        notes &&
-        Object.values(notes).map(
+        notes.data &&
+        Object.values(notes.data).map(
           (note: Note) => note.sectionId === id ? (<NoteComponent key={'notes/' + note.id} note={note}/>) : null
         )
       }

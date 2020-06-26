@@ -20,7 +20,7 @@ export const initialize = () => {
   }
 };
 
-export const saveItem = (key: string, item: any) => {
+const saveItem = (key: string, item: any) => {
   localStorage.setItem(key, JSON.stringify(item));
 };
 
@@ -28,25 +28,47 @@ export const getItem = (key: string) => {
   return JSON.parse(localStorage.getItem(key) ?? '{}');
 };
 
-export const pushItem = (key: string, item: any) => {
+const pushItem = (key: string, item: any, iri?: string) => {
   const items = getItem(key);
-  Object.assign(items, item);
+
+  if (iri !== null) {
+    items.order.push(iri);
+  }
+
+  Object.assign(items.data, item);
   saveItem(key, items);
 };
 
-export const removeItem = (key: string, itemId: string) => {
+const removeItem = (key: string, itemId: string) => {
+  // TODO: remove id from order
   const items = getItem(key);
-  delete items[itemId];
+  delete items.data[itemId];
   saveItem(key, items);
+};
+
+const updateIdsCounter = (key: string) => {
+  const counter = getItem(IDS_COUNTER);
+
+  switch (key) {
+    case NOTES_SECTIONS:
+      counter.lastNotesSectionId++;
+
+      break;
+    case NOTES:
+      counter.lastNoteId++;
+
+      break;
+  }
+
+  saveItem(IDS_COUNTER, counter);
 };
 
 export const getNotesBySectionId = (notesSectionId: number) => {
-  const notes = {};
-  const allNotes: Notes = getItem(NOTES);
-  const arrayOfNotes = Object.values(allNotes).filter((note: Note) => note.sectionId === notesSectionId);
+  const notes: Notes = getItem(NOTES);
+  const arrayOfNotes = Object.values(notes.data).filter((note: Note) => note.sectionId === notesSectionId);
 
   for (let i = 0; i < arrayOfNotes.length; i++) {
-    Object.assign(notes, {[NOTES_IRI + arrayOfNotes[i].id]: arrayOfNotes[i]})
+    Object.assign(notes.data, {[NOTES_IRI + arrayOfNotes[i].id]: arrayOfNotes[i]})
   }
 
   return notes;
@@ -54,21 +76,22 @@ export const getNotesBySectionId = (notesSectionId: number) => {
 
 export const addNotesSection = (newNotesSectionData: NewNotesSectionData) => {
   const lastNotesSectionId: number = getItem(IDS_COUNTER).lastNotesSectionId;
-
   const newNotesSection = {
     id: lastNotesSectionId + 1,
     ...newNotesSectionData,
   };
+  const notesSectionIri = NOTES_SECTIONS_IRI + newNotesSection.id;
   const notesSectionToSave = {
-    [NOTES_SECTIONS_IRI + newNotesSection.id]: newNotesSection
+    [notesSectionIri]: newNotesSection
   };
 
-  pushItem(NOTES_SECTIONS, notesSectionToSave);
-  pushItem(IDS_COUNTER, {
-    lastNotesSectionId: lastNotesSectionId + 1
-  });
+  pushItem(NOTES_SECTIONS, notesSectionToSave, notesSectionIri);
+  updateIdsCounter(NOTES_SECTIONS);
 
-  return notesSectionToSave;
+  return {
+    notesSection: notesSectionToSave,
+    iri: notesSectionIri,
+  };
 };
 
 export const removeNotesSection = (notesSectionId: number) => {
@@ -86,16 +109,18 @@ export const addNote = (noteData: NewNote) => {
     id: lastNoteId + 1,
     ...noteData,
   };
+  const noteIri = NOTES_IRI + newNote.id;
   const noteToSave = {
-    ['notes/' + newNote.id]: newNote,
+    [noteIri]: newNote,
   };
 
-  pushItem(NOTES, noteToSave);
-  pushItem(IDS_COUNTER, {
-    lastNoteId: lastNoteId + 1
-  });
+  pushItem(NOTES, noteToSave, noteIri);
+  updateIdsCounter(NOTES);
 
-  return noteToSave;
+  return {
+    note: noteToSave,
+    iri: noteIri,
+  };
 };
 
 export const removeNote = (noteId: number) => {
@@ -107,7 +132,7 @@ export const removeNote = (noteId: number) => {
 
 export const editNote = (note: Note) => {
   let notes = getItem(NOTES);
-  notes[NOTES_IRI + note.id] = note;
+  notes.data[NOTES_IRI + note.id] = note;
   saveItem(NOTES, notes);
 
   return {
@@ -118,7 +143,6 @@ export const editNote = (note: Note) => {
 
 export default {
   initialize,
-  saveItem,
   getItem,
   getNotesBySectionId,
   addNotesSection,
