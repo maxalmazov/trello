@@ -16,6 +16,8 @@ import registerServiceWorker from './registerServiceWorker';
 import { initProviders } from './lib/providers';
 
 import Root from './pages/Root/Root.container';
+import { DndProvider } from 'react-dnd';
+import { HTML5Backend } from 'react-dnd-html5-backend';
 
 initReactFastclick();
 
@@ -35,7 +37,9 @@ ReactDOM.render(
   <ReduxProvider store={store}>
     <ThemeProvider theme={theme}>
       <Router history={history}>
-        <Root />
+        <DndProvider backend={HTML5Backend}>
+          <Root />
+        </DndProvider>
       </Router>
     </ThemeProvider>
   </ReduxProvider>,

@@ -15,13 +15,14 @@ export const NoteActionWrapper = styled.div`
   display: flex;
 `;
 
-export const NoteWrapper = styled(Card)`
+export const NoteWrapper = styled(Card)<{ isDragging: boolean }>`
   && {
     width: 320px;
     margin-bottom: 5px;
     padding: 5px;
     text-align: justify;
     background-color: ${props => props.color};
+    opacity: ${props => props.isDragging ? 0.5 : 1};
     &:hover {
       background-color: ${props => theme.getDarkened10(props.color)};
       ${NoteActionsWrapper} {

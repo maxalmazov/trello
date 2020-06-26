@@ -11,31 +11,57 @@ import {
 } from './NotesSection.styled';
 import NotesSectionAction from './NotesSectionAction';
 import AddNote from '../notes/AddNote';
-import { loadNotesBySectionId } from '../../store/notes/actions';
+import { editNote, loadNotesBySectionId } from '../../store/notes/actions';
 import { getNotesBySectionId } from '../../store/notes/selectors';
+import { useDrop } from 'react-dnd';
 
 const NotesSectionComponent = ({ id, title, color}: NotesSection) => {
   const dispatch = useDispatch();
   const notes: Notes = useSelector(getNotesBySectionId);
 
+  const [{ isOver, item }, drop] = useDrop({
+    accept: 'NOTES',
+    drop: () => {
+      item.note.sectionId = id;
+      dispatch(editNote(item.note));
+    },
+    collect: monitor => ({
+      isOver: monitor.isOver(),
+      item: monitor.getItem(),
+    }),
+  });
+
   useEffect(() => {
     dispatch(loadNotesBySectionId(id))
   }, [id]);
+
   return (
-    <NotesSectionWrapper color={color}>
+    <NotesSectionWrapper ref={drop} color={color}>
       <NotesSectionHeaderWrapper>
         <NotesSectionHeader>
           {title}
         </NotesSectionHeader>
         <NotesSectionAction notesSectionId={id}/>
       </NotesSectionHeaderWrapper>
-        {
-          notes &&
-          Object.values(notes).map(
-            (note: Note) => note.sectionId === id ? (<NoteComponent key={'notes/' + note.id} note={note}/>) : null
-          )
-        }
-        <AddNote notesSectionId={id}/>
+      {
+        notes &&
+        Object.values(notes).map(
+          (note: Note) => note.sectionId === id ? (<NoteComponent key={'notes/' + note.id} note={note}/>) : null
+        )
+      }
+      <AddNote notesSectionId={id}/>
+      {isOver && (
+        <div style={{
+          position: 'absolute',
+          top: 0,
+          left: 0,
+          height: '100%',
+          width: '100%',
+          zIndex: 1,
+          opacity: 0.5,
+          backgroundColor: 'yellow',
+        }}/>
+      )}
     </NotesSectionWrapper>
   );
 };
