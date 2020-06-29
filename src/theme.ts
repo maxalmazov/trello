@@ -18,7 +18,7 @@ const colors = {
   pinkLightened10: '#ff90a9',
   blue: '#4d88ff',
   blueDarkened10: '#346fe6',
-  blueLightened10: '#4e89ff',
+  blueLightened10: '#67a2ff',
   green: '#43dc9c',
   greenDarkened10: '#2ac383',
   greenLightened10: '#5df6b6',

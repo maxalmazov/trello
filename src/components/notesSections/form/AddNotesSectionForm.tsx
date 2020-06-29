@@ -21,7 +21,7 @@ interface AddNoteSectionFormProps {
 
 const AddNoteSectionForm = ({ handleClose }: AddNoteSectionFormProps) => {
   const dispatch = useDispatch();
-  const [selectedColor, setSelectedColor] = useState(theme.white);
+  const [selectedColor, setSelectedColor] = useState(theme.whiteDarkened10);
 
   const addNotesSection = (newNoteSectionData: NewNotesSectionData) => {
     handleClose();
