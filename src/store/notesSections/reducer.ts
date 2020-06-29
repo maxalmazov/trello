@@ -11,18 +11,15 @@ export type Action = ActionType<typeof actions>;
 
 const reducer: Reducer<NotesSections, Action> = (state: NotesSections = initialState, action: Action) => {
   switch (action.type) {
-    case ActionTypes.GET_NOTES_SECTION:
-      return {
-        ...state,
-      };
-
     case ActionTypes.GET_NOTES_SECTION_SUCCESS:
       return {
         ...action.payload,
       };
 
     case ActionTypes.ADD_NOTES_SECTION_SUCCESS:
-      Object.assign(state.data, action.payload.notesSection);
+
+      console.log(state);
+      // Object.assign(state.data, action.payload.notesSection);
       state.order.push(action.payload.iri);
 
       return {

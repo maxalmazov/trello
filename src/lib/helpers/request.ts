@@ -40,9 +40,11 @@ const pushItem = (key: string, item: any, iri?: string) => {
 };
 
 const removeItem = (key: string, itemId: string) => {
-  // TODO: remove id from order
   const items = getItem(key);
+
   delete items.data[itemId];
+  items.order.splice(items.order.indexOf(itemId));
+
   saveItem(key, items);
 };
 

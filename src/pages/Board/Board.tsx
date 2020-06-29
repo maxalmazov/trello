@@ -24,10 +24,10 @@ const BoardComponent: React.FC<NotesSectionsProps> = ({ data, order }: NotesSect
         alignItems={'flex-start'}
       >
         {
-          data &&
-          Object.values(data).map(
-            (notesSection: NotesSection) =>
-              <NotesSectionComponent key={'notesSectionId' + notesSection.id} {...notesSection}/>
+          order &&
+          order.map(
+            (notesSectionId: string) =>
+              <NotesSectionComponent key={'notesSectionId' + notesSectionId} {...data[notesSectionId]}/>
           )
         }
       </Grid>

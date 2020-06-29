@@ -1,5 +1,4 @@
 import {
-  getNotesSections,
   getNotesSectionsSuccess,
   addNotesSectionSuccess,
   removeNotesSectionSuccess,
@@ -8,8 +7,6 @@ import controllers from '../../controllers';
 import { NewNotesSectionData } from './types';
 
 export const loadNotesSections = () => (dispatch: any) => {
-  dispatch(getNotesSections());
-
   try {
     dispatch(getNotesSectionsSuccess(controllers.notesSections.getNotesSections()));
   } catch (error) {

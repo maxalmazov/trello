@@ -24,7 +24,6 @@ const AddNoteSectionForm = ({ handleClose }: AddNoteSectionFormProps) => {
   const [selectedColor, setSelectedColor] = useState(theme.white);
 
   const addNotesSection = (newNoteSectionData: NewNotesSectionData) => {
-    console.log(newNoteSectionData);
     handleClose();
     dispatch(addNotesSectionAction(newNoteSectionData));
   };
