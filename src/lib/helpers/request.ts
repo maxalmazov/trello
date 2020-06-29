@@ -32,7 +32,7 @@ const pushItem = (key: string, item: any, iri?: string) => {
   const items = getItem(key);
 
   if (iri !== null) {
-    items.order.push(iri);
+    items.ids.push(iri);
   }
 
   Object.assign(items.data, item);
@@ -43,7 +43,7 @@ const removeItem = (key: string, itemId: string) => {
   const items = getItem(key);
 
   delete items.data[itemId];
-  items.order.splice(items.order.indexOf(itemId), 1);
+  items.ids.splice(items.ids.indexOf(itemId), 1);
 
   saveItem(key, items);
 };

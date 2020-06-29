@@ -20,7 +20,7 @@ const reducer: Reducer<Notes, Action> = (state: Notes = initialState, action: Ac
 
     case ActionTypes.ADD_NOTE_SUCCESS:
       Object.assign(state.data, action.payload.note);
-      state.order.push(action.payload.iri);
+      state.ids.push(action.payload.iri);
 
       return {
         ...state,
@@ -28,6 +28,7 @@ const reducer: Reducer<Notes, Action> = (state: Notes = initialState, action: Ac
 
     case ActionTypes.REMOVE_NOTE_SUCCESS:
       delete state.data[action.payload];
+      state.ids.splice(state.ids.indexOf(action.payload), 1);
 
       return {
         ...state,

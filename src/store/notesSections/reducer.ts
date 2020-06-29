@@ -18,7 +18,7 @@ const reducer: Reducer<NotesSections, Action> = (state: NotesSections = initialS
 
     case ActionTypes.ADD_NOTES_SECTION_SUCCESS:
       Object.assign(state.data, action.payload.notesSection);
-      state.order.push(action.payload.iri);
+      state.ids.push(action.payload.iri);
 
       return {
         ...state,
@@ -26,7 +26,7 @@ const reducer: Reducer<NotesSections, Action> = (state: NotesSections = initialS
 
     case ActionTypes.REMOVE_NOTES_SECTION_SUCCESS:
       delete state.data[action.payload];
-      state.order.splice(state.order.indexOf(action.payload), 1);
+      state.ids.splice(state.ids.indexOf(action.payload), 1);
 
       return {
         ...state,

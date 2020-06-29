@@ -1,6 +1,6 @@
 export interface Notes {
   data: NoteWithIri,
-  order: string[],
+  ids: string[],
 }
 
 export interface Note {

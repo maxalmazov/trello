@@ -1,6 +1,6 @@
 export interface NotesSections {
   data: NotesSectionWithIri,
-  order: string[],
+  ids: string[],
 }
 
 export interface NotesSection {

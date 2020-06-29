@@ -12,7 +12,7 @@ export const initialData = {
         color: '#dfe1e6',
       }
     },
-    order: [
+    ids: [
       'sections/1',
       'sections/2',
     ]
@@ -47,7 +47,7 @@ export const initialData = {
         color: '#ffffff',
       },
     },
-    order: [
+    ids: [
       'notes/1',
       'notes/2',
       'notes/3',

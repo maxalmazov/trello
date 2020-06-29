@@ -25,8 +25,8 @@ const BoardComponent: React.FC = () => {
         alignItems={'flex-start'}
       >
         {
-          notesSections.order &&
-          notesSections.order.map(
+          notesSections.ids &&
+          notesSections.ids.map(
             (notesSectionId: string) =>
               <NotesSectionComponent key={'notesSectionId' + notesSectionId} {...notesSections.data[notesSectionId]}/>
           )
