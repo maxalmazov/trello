@@ -1,20 +1,21 @@
 import React, { useEffect } from 'react';
 import { Grid } from '@material-ui/core';
 
-import { NotesSection, NotesSections } from '../../store/notesSections/types';
+import { NotesSections } from '../../store/notesSections/types';
 import { BoardWrapper } from './Board.styled';
 import NotesSectionComponent from '../../components/notesSections/NotesSection';
+import { loadNotesSections } from '../../store/notesSections/actions';
+import { useDispatch, useSelector } from 'react-redux';
+import { getNotesSection } from '../../store/notesSections/selectors';
 
-export interface NotesSectionsProps {
-  data: {
-    [notesSectionId: string]: NotesSection
-  },
-  order: string[],
-}
+const BoardComponent: React.FC = () => {
+  const dispatch = useDispatch();
 
-const BoardComponent: React.FC<NotesSectionsProps> = ({ data, order }: NotesSections) => {
+  useEffect(() => {
+    dispatch(loadNotesSections())
+  }, []);
+  const notesSections: NotesSections = useSelector(getNotesSection);
 
-  console.log(data);
     return(
     <BoardWrapper>
       <Grid
@@ -24,10 +25,10 @@ const BoardComponent: React.FC<NotesSectionsProps> = ({ data, order }: NotesSect
         alignItems={'flex-start'}
       >
         {
-          order &&
-          order.map(
+          notesSections.order &&
+          notesSections.order.map(
             (notesSectionId: string) =>
-              <NotesSectionComponent key={'notesSectionId' + notesSectionId} {...data[notesSectionId]}/>
+              <NotesSectionComponent key={'notesSectionId' + notesSectionId} {...notesSections.data[notesSectionId]}/>
           )
         }
       </Grid>

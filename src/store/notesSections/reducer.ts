@@ -17,9 +17,7 @@ const reducer: Reducer<NotesSections, Action> = (state: NotesSections = initialS
       };
 
     case ActionTypes.ADD_NOTES_SECTION_SUCCESS:
-
-      console.log(state);
-      // Object.assign(state.data, action.payload.notesSection);
+      Object.assign(state.data, action.payload.notesSection);
       state.order.push(action.payload.iri);
 
       return {
@@ -27,9 +25,8 @@ const reducer: Reducer<NotesSections, Action> = (state: NotesSections = initialS
       };
 
     case ActionTypes.REMOVE_NOTES_SECTION_SUCCESS:
-      console.log(state, action);
-      // TODO
-      delete state.data['sections/1'];
+      delete state.data[action.payload];
+      state.order.splice(state.order.indexOf(action.payload), 1);
 
       return {
         ...state,

@@ -43,7 +43,7 @@ const removeItem = (key: string, itemId: string) => {
   const items = getItem(key);
 
   delete items.data[itemId];
-  items.order.splice(items.order.indexOf(itemId));
+  items.order.splice(items.order.indexOf(itemId), 1);
 
   saveItem(key, items);
 };
