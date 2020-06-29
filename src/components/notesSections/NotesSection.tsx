@@ -11,7 +11,7 @@ import {
 } from './NotesSection.styled';
 import NotesSectionAction from './NotesSectionAction';
 import AddNote from '../notes/AddNote';
-import { moveNote as moveNoteAction, loadNotesBySectionId } from '../../store/notes/actions';
+import { moveNote as moveNoteAction, loadNotesBySectionId, editNote } from '../../store/notes/actions';
 import { getNotesBySectionId } from '../../store/notes/selectors';
 import { useDrop } from 'react-dnd';
 import { NOTES } from '../../store/types';
@@ -20,21 +20,20 @@ const NotesSectionComponent = ({ id, title, color}: NotesSection) => {
   const dispatch = useDispatch();
   const notes: any = useSelector(getNotesBySectionId);
 
-  // const [{ isOver, item }, drop] = useDrop({
-  //   accept: NOTES,
-  //   drop: () => {
-  //     item.note.sectionId = id;
-  //     dispatch(editNote(item.note));
-  //   },
-  //   collect: monitor => ({
-  //     isOver: monitor.isOver(),
-  //     item: monitor.getItem(),
-  //   }),
-  // });
+  const [{ item }, drop] = useDrop({
+    accept: NOTES,
+    hover() {
+      item.note.sectionId = id;
+      dispatch(editNote(item.note));
+    },
+    collect: monitor => ({
+      isOver: monitor.isOver(),
+      item: monitor.getItem(),
+    }),
+  });
 
   const moveNote = useCallback(
     (dragIndex: string, hoverIndex: string) => {
-      console.log(dragIndex, hoverIndex, id);
       dispatch(moveNoteAction(dragIndex, hoverIndex, id));
     },
     [notes],
@@ -45,7 +44,7 @@ const NotesSectionComponent = ({ id, title, color}: NotesSection) => {
   }, [id]);
 
   return (
-    <NotesSectionWrapper color={color}>
+    <NotesSectionWrapper ref={drop} color={color}>
       <NotesSectionHeaderWrapper>
         <NotesSectionHeader>
           {title}
