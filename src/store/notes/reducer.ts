@@ -41,6 +41,14 @@ const reducer: Reducer<Notes, Action> = (state: Notes = initialState, action: Ac
         ...state,
       };
 
+    case ActionTypes.MOVE_NOTE_SUCCESS:
+      state.data[action.payload.noteIri].sectionId = action.payload.notesSectionId;
+      state.ids = action.payload.ids;
+
+      return {
+        ...state,
+      };
+
     default:
       return state;
   }

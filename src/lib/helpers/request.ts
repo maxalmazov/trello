@@ -143,6 +143,24 @@ export const editNote = (note: Note) => {
   };
 };
 
+export const moveNote = (dragNoteId: string, hoverNoteId: string, targetNotesSectionId: number) => {
+  const notes = getItem(NOTES);
+  const hoverNoteIndex = notes.ids.indexOf(hoverNoteId);
+  const dragNoteIndex = notes.ids.indexOf(dragNoteId);
+
+  notes.ids.splice(dragNoteIndex, 1);
+  notes.ids.splice(hoverNoteIndex, 0, dragNoteId);
+  notes.data[dragNoteId].sectionId = targetNotesSectionId;
+
+  saveItem(NOTES, notes);
+
+  return {
+    noteIri: dragNoteId,
+    notesSectionId: targetNotesSectionId,
+    ids: notes.ids
+  };
+};
+
 export default {
   initialize,
   getItem,
@@ -152,4 +170,5 @@ export default {
   addNote,
   removeNote,
   editNote,
+  moveNote,
 }

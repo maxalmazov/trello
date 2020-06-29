@@ -1,7 +1,9 @@
 import {
   loadNotesSuccess,
   addNoteSuccess,
-  removeNoteSuccess, editNoteSuccess,
+  removeNoteSuccess,
+  editNoteSuccess,
+  moveNoteSuccess,
 } from './actionCreators'
 import { NewNote, Note } from './types';
 import controllers from '../../controllers';
@@ -37,6 +39,15 @@ export const editNote = (note: Note) => async (dispatch: any) => {
   try {
     const updatedNote = controllers.notes.editNote(note);
     dispatch(editNoteSuccess(updatedNote));
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export const moveNote = (dragNoteId: string, hoverNoteId: string, targetNotesSectionId: number) => async (dispatch: any) => {
+  try {
+    const noteIds = controllers.notes.moveNote(dragNoteId, hoverNoteId, targetNotesSectionId);
+    dispatch(moveNoteSuccess(noteIds));
   } catch (error) {
     console.log(error);
   }

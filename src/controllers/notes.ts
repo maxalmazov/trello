@@ -21,9 +21,14 @@ export const editNote = (note: Note) => {
   return request.editNote(note);
 };
 
+export const moveNote = (dragNoteId: string, hoverNoteId: string, targetNotesSectionId: number) => {
+  return request.moveNote(dragNoteId, hoverNoteId, targetNotesSectionId);
+};
+
 export default {
   getNotesBySectionId,
   addNote,
   removeNote,
   editNote,
+  moveNote,
 }

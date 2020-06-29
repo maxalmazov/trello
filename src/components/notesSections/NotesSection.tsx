@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useCallback, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import NoteComponent from '../notes/Note.container';
@@ -11,32 +11,41 @@ import {
 } from './NotesSection.styled';
 import NotesSectionAction from './NotesSectionAction';
 import AddNote from '../notes/AddNote';
-import { editNote, loadNotesBySectionId } from '../../store/notes/actions';
+import { moveNote as moveNoteAction, loadNotesBySectionId } from '../../store/notes/actions';
 import { getNotesBySectionId } from '../../store/notes/selectors';
 import { useDrop } from 'react-dnd';
+import { NOTES } from '../../store/types';
 
 const NotesSectionComponent = ({ id, title, color}: NotesSection) => {
   const dispatch = useDispatch();
-  const notes: Notes = useSelector(getNotesBySectionId);
+  const notes: any = useSelector(getNotesBySectionId);
 
-  const [{ isOver, item }, drop] = useDrop({
-    accept: 'NOTES',
-    drop: () => {
-      item.note.sectionId = id;
-      dispatch(editNote(item.note));
+  // const [{ isOver, item }, drop] = useDrop({
+  //   accept: NOTES,
+  //   drop: () => {
+  //     item.note.sectionId = id;
+  //     dispatch(editNote(item.note));
+  //   },
+  //   collect: monitor => ({
+  //     isOver: monitor.isOver(),
+  //     item: monitor.getItem(),
+  //   }),
+  // });
+
+  const moveNote = useCallback(
+    (dragIndex: string, hoverIndex: string) => {
+      console.log(dragIndex, hoverIndex, id);
+      dispatch(moveNoteAction(dragIndex, hoverIndex, id));
     },
-    collect: monitor => ({
-      isOver: monitor.isOver(),
-      item: monitor.getItem(),
-    }),
-  });
+    [notes],
+  );
 
   useEffect(() => {
     dispatch(loadNotesBySectionId(id))
   }, [id]);
 
   return (
-    <NotesSectionWrapper ref={drop} color={color}>
+    <NotesSectionWrapper color={color}>
       <NotesSectionHeaderWrapper>
         <NotesSectionHeader>
           {title}
@@ -47,23 +56,11 @@ const NotesSectionComponent = ({ id, title, color}: NotesSection) => {
         notes.ids &&
         notes.ids.map(
           (noteId: string) => notes.data[noteId].sectionId === id ?
-            (<NoteComponent key={'notes/' + noteId} note={notes.data[noteId]}/>) :
+            (<NoteComponent index={noteId} moveNote={moveNote} key={'notes/' + noteId} note={notes.data[noteId]}/>) :
             null
         )
       }
       <AddNote notesSectionId={id}/>
-      {isOver && (
-        <div style={{
-          position: 'absolute',
-          top: 0,
-          left: 0,
-          height: '100%',
-          width: '100%',
-          zIndex: 1,
-          opacity: 0.5,
-          backgroundColor: 'yellow',
-        }}/>
-      )}
     </NotesSectionWrapper>
   );
 };
