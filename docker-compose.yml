@@ -1,0 +1,14 @@
+version: '3.3'
+
+services:
+  trello:
+    container_name: trello
+    build:
+      context: .
+      dockerfile: .docker/Dockerfile
+    command: ["yarn", "start:dev"]
+    working_dir: /var/www/html
+    volumes:
+      - ./:/var/www/html
+    ports:
+      - "${PORT}:3000"
