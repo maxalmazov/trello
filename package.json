@@ -47,6 +47,7 @@
     "recompose": "^0.30.0",
     "redux": "^4.0.1",
     "redux-thunk": "^2.3.0",
+    "redux-undo": "^1.0.1",
     "styled-components": "5.1.0",
     "styled-normalize": "^8.0.7",
     "typesafe-actions": "^2.1.1",

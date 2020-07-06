@@ -5,13 +5,9 @@ import { Edit as EditIcon, Delete as DeleteIcon } from '@material-ui/icons';
 import { NoteActionWrapper } from './Note.styled';
 import {
   removeNote as removeNoteAction,
-  editNote as editNoteAction,
-
 } from '../../store/notes/actions';
-import AddNote from './AddNote';
 import { Note } from '../../store/notes/types';
-import { NewNoteButton } from '../notesSections/NotesSection.styled';
-import { Dialog, Typography } from '@material-ui/core';
+import { Dialog } from '@material-ui/core';
 import NoteForm from './form/NoteForm';
 
 interface NoteActionProps {

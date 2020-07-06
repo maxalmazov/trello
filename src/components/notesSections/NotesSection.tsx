@@ -22,7 +22,7 @@ const NotesSectionComponent = ({ id, title, color}: NotesSection) => {
 
   const [{ item }, drop] = useDrop({
     accept: NOTES,
-    hover() {
+    drop() {
       item.note.sectionId = id;
       dispatch(editNote(item.note));
     },
@@ -36,7 +36,7 @@ const NotesSectionComponent = ({ id, title, color}: NotesSection) => {
     (dragIndex: string, hoverIndex: string) => {
       dispatch(moveNoteAction(dragIndex, hoverIndex, id));
     },
-    [notes],
+    [id],
   );
 
   useEffect(() => {
@@ -52,10 +52,10 @@ const NotesSectionComponent = ({ id, title, color}: NotesSection) => {
         <NotesSectionAction notesSectionId={id}/>
       </NotesSectionHeaderWrapper>
       {
-        notes.ids &&
-        notes.ids.map(
-          (noteId: string) => notes.data[noteId].sectionId === id ?
-            (<NoteComponent index={noteId} moveNote={moveNote} key={'notes/' + noteId} note={notes.data[noteId]}/>) :
+        notes.present.ids &&
+        notes.present.ids.map(
+          (noteId: string) => notes.present.data[noteId].sectionId === id ?
+            (<NoteComponent index={noteId} moveNote={moveNote} key={'notes/' + noteId} note={notes.present.data[noteId]}/>) :
             null
         )
       }

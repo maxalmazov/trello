@@ -13,6 +13,7 @@ import {
   RightSide,
 } from './Header.styled';
 import AddNoteSection from '../../../components/notesSections/form/AddNotesSection';
+import UndoRedo from '../../../components/undo/Undo.container';
 
 export interface HeaderProps {
 }
@@ -30,6 +31,7 @@ const HeaderMenu: React.FC<RouteComponentProps & HeaderProps> = ({ location }) =
           </Typography>
         </LeftSide>
         <RightSide>
+          <UndoRedo/>
           <AddNoteSection/>
         </RightSide>
       </HeaderContainer>
