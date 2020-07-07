@@ -5,12 +5,12 @@ import {
   combineReducers,
   Reducer
 } from 'redux';
+import undoable, { excludeAction }  from 'redux-undo';
 import thunk from 'redux-thunk';
 import { composeWithDevTools } from 'redux-devtools-extension';
 
 import notes from './notes/reducer';
 import notesSections from './notesSections/reducer';
-import undoable, { excludeAction }  from 'redux-undo';
 import { ActionTypes as NotesActionTypes } from './notes/types';
 import { ActionTypes as NotesSectionsActionTypes } from './notesSections/types';
 
