@@ -5,8 +5,8 @@ import { Undo } from './Undo';
 
 const mapStateToProps = (state: any) => {
   return {
-    canUndo: state.notes.past.length > 0,
-    canRedo: state.notes.future.length > 0
+    canUndo: state.past.length > 0,
+    canRedo: state.future.length > 0
   }
 };
 

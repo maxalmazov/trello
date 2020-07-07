@@ -10,6 +10,9 @@ import { composeWithDevTools } from 'redux-devtools-extension';
 
 import notes from './notes/reducer';
 import notesSections from './notesSections/reducer';
+import undoable, { excludeAction }  from 'redux-undo';
+import { ActionTypes as NotesActionTypes } from './notes/types';
+import { ActionTypes as NotesSectionsActionTypes } from './notesSections/types';
 
 declare global {
   interface Window {
@@ -17,18 +20,23 @@ declare global {
   }
 }
 
-const initialState: any = {};
-
 const middleware = [thunk];
 
-export const rootReducer: Reducer = combineReducers({
+const reducer: Reducer = combineReducers({
   notes,
   notesSections,
 });
 
+export const rootReducer = undoable(reducer, {
+  filter: excludeAction([
+    '@@INIT',
+    NotesActionTypes.LOAD_NOTES_SUCCESS,
+    NotesSectionsActionTypes.GET_NOTES_SECTION_SUCCESS,
+  ])
+});
+
 const store = createStore(
   rootReducer,
-  initialState,
   compose(
     applyMiddleware(...middleware),
     composeWithDevTools(applyMiddleware(thunk))

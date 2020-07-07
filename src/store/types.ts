@@ -6,10 +6,12 @@ export const NOTES_SECTIONS = 'notesSections';
 export const IDS_COUNTER = 'idsCounter';
 
 export interface State {
-  notesSections: NotesSections;
-  notes: Notes;
-  idsCounter: {
-    lastNotesSectionId: number;
-    lastNoteId: number;
+  present: {
+    notesSections: NotesSections;
+    notes: Notes;
+    idsCounter: {
+      lastNotesSectionId: number;
+      lastNoteId: number;
+    };
   };
 }

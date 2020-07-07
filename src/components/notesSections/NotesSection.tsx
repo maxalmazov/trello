@@ -3,7 +3,6 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import NoteComponent from '../notes/Note.container';
 import { NotesSection } from '../../store/notesSections/types';
-import { Note, Notes } from '../../store/notes/types';
 import {
   NotesSectionHeader,
   NotesSectionHeaderWrapper,
@@ -12,17 +11,22 @@ import {
 import NotesSectionAction from './NotesSectionAction';
 import AddNote from '../notes/AddNote';
 import { moveNote as moveNoteAction, loadNotesBySectionId, editNote } from '../../store/notes/actions';
-import { getNotesBySectionId } from '../../store/notes/selectors';
+import { getNotes } from '../../store/notes/selectors';
 import { useDrop } from 'react-dnd';
 import { NOTES } from '../../store/types';
+import { Notes } from '../../store/notes/types';
 
 const NotesSectionComponent = ({ id, title, color}: NotesSection) => {
   const dispatch = useDispatch();
-  const notes: any = useSelector(getNotesBySectionId);
+  const notes: Notes = useSelector(getNotes);
 
   const [{ item }, drop] = useDrop({
     accept: NOTES,
-    drop() {
+    hover() {
+      if (item.note.sectionId === id) {
+        return;
+      }
+
       item.note.sectionId = id;
       dispatch(editNote(item.note));
     },
@@ -52,10 +56,10 @@ const NotesSectionComponent = ({ id, title, color}: NotesSection) => {
         <NotesSectionAction notesSectionId={id}/>
       </NotesSectionHeaderWrapper>
       {
-        notes.present.ids &&
-        notes.present.ids.map(
-          (noteId: string) => notes.present.data[noteId].sectionId === id ?
-            (<NoteComponent index={noteId} moveNote={moveNote} key={'notes/' + noteId} note={notes.present.data[noteId]}/>) :
+        notes.ids &&
+        notes.ids.map(
+          (noteId: string) => notes.data[noteId].sectionId === id ?
+            (<NoteComponent index={noteId} moveNote={moveNote} key={'notes/' + noteId} note={notes.data[noteId]}/>) :
             null
         )
       }

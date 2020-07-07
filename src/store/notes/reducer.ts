@@ -1,5 +1,4 @@
 import { Reducer } from 'redux';
-import undoable from 'redux-undo'
 import { ActionType } from 'typesafe-actions';
 
 import { ActionTypes, Notes } from './types';
@@ -55,4 +54,4 @@ const reducer: Reducer<Notes, Action> = (state: Notes = initialState, action: Ac
   }
 };
 
-export default undoable(reducer);
+export default reducer;
