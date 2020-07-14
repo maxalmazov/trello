@@ -14,6 +14,7 @@ import {
 } from './Header.styled';
 import AddNoteSection from '../../../components/notesSections/form/AddNotesSection';
 import UndoRedo from '../../../components/undo/Undo.container';
+import BackgroundImage from '../../Board/BackgroundImage';
 
 export interface HeaderProps {
 }
@@ -32,6 +33,7 @@ const HeaderMenu: React.FC<RouteComponentProps & HeaderProps> = ({ location }) =
         </LeftSide>
         <RightSide>
           <UndoRedo/>
+          <BackgroundImage/>
           <AddNoteSection/>
         </RightSide>
       </HeaderContainer>
