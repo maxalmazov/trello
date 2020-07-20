@@ -1,11 +1,10 @@
 import controllers from '../../controllers';
 import { saveBackgroundImageSuccess } from './actionCreators';
-import { BackgroundImage } from './types';
 
-export const saveBackgroundImage = (image: File) => async (dispatch: any) => {
+export const saveBackgroundImage = (newImage: File) => async (dispatch: any) => {
   try {
-    controllers.backgroundImage.saveImage(image);
-    // dispatch(saveBackgroundImageSuccess(imageUrl));
+    const image = await controllers.backgroundImage.saveImage(newImage);
+    dispatch(saveBackgroundImageSuccess(image.url));
   } catch (error) {
     console.log(error);
   }

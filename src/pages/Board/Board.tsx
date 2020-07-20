@@ -5,23 +5,19 @@ import { NotesSections } from '../../store/notesSections/types';
 import { BoardWrapper } from './Board.styled';
 import NotesSectionComponent from '../../components/notesSections/NotesSection';
 import { loadNotesSections } from '../../store/notesSections/actions';
-import { loadBackgroundImage } from '../../store/backgroundImage/actions';
 import { useDispatch, useSelector } from 'react-redux';
 import { getNotesSection } from '../../store/notesSections/selectors';
-import { getBackgroundImage } from '../../store/backgroundImage/selectors';
 
 const BoardComponent: React.FC = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch(loadNotesSections());
-    dispatch(loadBackgroundImage());
   }, []);
   const notesSections: NotesSections = useSelector(getNotesSection);
-  const backgroundImage = useSelector(getBackgroundImage);
 
     return(
-    <BoardWrapper backgroundImageUrl={backgroundImage.url}>
+    <BoardWrapper>
       <Grid
         container={true}
         direction={'row'}

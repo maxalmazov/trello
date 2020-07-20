@@ -1,8 +1,5 @@
 import styled from '../../theme';
 
-export const BoardWrapper = styled.div<{ backgroundImageUrl: string }>`
+export const BoardWrapper = styled.div`
   flex: 1;
-  background-image: url(${props => props.backgroundImageUrl});
-  //background-color: #f5f5f5;
-  padding: 3px;
 `;

@@ -14,7 +14,7 @@ export const loadNotesSections = () => (dispatch: any) => {
   }
 };
 
-export const addNotesSection = (newNotesSectionData: NewNotesSectionData) => async (dispatch: any) => {
+export const addNotesSection = (newNotesSectionData: NewNotesSectionData) => (dispatch: any) => {
   try {
     const newNotesSection = controllers.notesSections.addNotesSection(newNotesSectionData);
     dispatch(addNotesSectionSuccess(newNotesSection));
@@ -23,7 +23,7 @@ export const addNotesSection = (newNotesSectionData: NewNotesSectionData) => asy
   }
 };
 
-export const removeNotesSection = (notesSectionId: number) => async (dispatch: any) => {
+export const removeNotesSection = (notesSectionId: number) => (dispatch: any) => {
   try {
     const notesSectionIri = controllers.notesSections.removeNotesSection(notesSectionId);
     dispatch(removeNotesSectionSuccess(notesSectionIri));

@@ -26,7 +26,7 @@ export const addNote = (note: NewNote) => async (dispatch: any) => {
   }
 };
 
-export const removeNote = (noteId: number) => async (dispatch: any) => {
+export const removeNote = (noteId: number) => (dispatch: any) => {
   try {
     const noteUri = controllers.notes.removeNote(noteId);
     dispatch(removeNoteSuccess(noteUri));
@@ -35,7 +35,7 @@ export const removeNote = (noteId: number) => async (dispatch: any) => {
   }
 };
 
-export const editNote = (note: Note) => async (dispatch: any) => {
+export const editNote = (note: Note) => (dispatch: any) => {
   try {
     const updatedNote = controllers.notes.editNote(note);
     dispatch(editNoteSuccess(updatedNote));
@@ -44,7 +44,7 @@ export const editNote = (note: Note) => async (dispatch: any) => {
   }
 };
 
-export const moveNote = (dragNoteId: string, hoverNoteId: string, targetNotesSectionId: number) => async (dispatch: any) => {
+export const moveNote = (dragNoteId: string, hoverNoteId: string, targetNotesSectionId: number) => (dispatch: any) => {
   try {
     const noteIds = controllers.notes.moveNote(dragNoteId, hoverNoteId, targetNotesSectionId);
     dispatch(moveNoteSuccess(noteIds));

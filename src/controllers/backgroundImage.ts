@@ -1,8 +1,8 @@
 // make API calls here
 import request from '../lib/helpers/request';
 
-export const saveImage = (imageUrl: File) => {
-  return request.saveImage(imageUrl);
+export const saveImage = (image: File) => {
+  return request.saveImage(image);
 };
 
 export const getImage = () => {
