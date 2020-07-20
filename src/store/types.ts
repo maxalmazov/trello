@@ -4,6 +4,7 @@ import { NotesSections } from './notesSections/types';
 export const NOTES = 'notes';
 export const NOTES_SECTIONS = 'notesSections';
 export const IDS_COUNTER = 'idsCounter';
+export const BACKGROUND_IMAGE = 'backgroundImage';
 
 export interface State {
   past: [];
@@ -14,6 +15,9 @@ export interface State {
       lastNotesSectionId: number;
       lastNoteId: number;
     };
+    backgroundImage: {
+      url: string;
+    }
   };
   future: [];
 }

@@ -5890,6 +5890,11 @@ icss-utils@^2.1.0:
   dependencies:
     postcss "^6.0.1"
 
+idb@^5.0.4:
+  version "5.0.4"
+  resolved "https://registry.yarnpkg.com/idb/-/idb-5.0.4.tgz#9b6d42d5eff3c7f063b6f4d3e7c7e9aaeae2fd7a"
+  integrity sha512-g+CRa0NLB5R+VTd8UQK/J8eEPlZk82iwekJQOYA0bFJsc7TGDKyBywNmLBUdHPUyyazV1wN8DdHhSKzEX9Z9kQ==
+
 idempotent-babel-polyfill@^7.4.4:
   version "7.4.4"
   resolved "https://registry.yarnpkg.com/idempotent-babel-polyfill/-/idempotent-babel-polyfill-7.4.4.tgz#de34305a23cffbc7f31c0ee1bea55522e9b470a4"
@@ -10146,9 +10151,9 @@ react-click-outside@^3.0.1:
   dependencies:
     hoist-non-react-statics "^2.1.1"
 
-"react-decompiler@git+https://github.com/wix/react-decompiler.git":
+"react-decompiler@https://github.com/wix/react-decompiler.git":
   version "0.2.1"
-  resolved "git+https://github.com/wix/react-decompiler.git#4ac49d77638301a4e13f3e45d476a3966f375ee7"
+  resolved "https://github.com/wix/react-decompiler.git#4ac49d77638301a4e13f3e45d476a3966f375ee7"
   dependencies:
     is-plain-obj "^1.1.0"
     is-regexp "^1.0.0"

@@ -1,17 +1,20 @@
 import React, { ChangeEvent } from 'react';
+import { DropTargetMonitor, useDrop } from 'react-dnd';
+import { NativeTypes } from 'react-dnd-html5-backend';
+import { Close as CloseIcon, FolderOpen } from '@material-ui/icons';
+import {
+  Button,
+  Card,
+  CardActions,
+  CardContent,
+  CardHeader, IconButton,
+  Typography
+} from '@material-ui/core';
 
 import {
   BackgroundImageFormCaption,
-  BackgroundImageFormWrapper
+  BackgroundImageFormWrapper, CloseModalWrapper
 } from './BackgroundImage.styled';
-import { DropTargetMonitor, useDrop } from 'react-dnd';
-import { NativeTypes } from 'react-dnd-html5-backend';
-import {
-  Button,
-  CardActions,
-  CardContent,
-  Typography
-} from '@material-ui/core';
 
 export interface TargetBoxProps {
   onDrop: (props: TargetBoxProps, monitor: DropTargetMonitor) => void;
@@ -35,7 +38,7 @@ const BackgroundImageForm: React.FC<TargetBoxProps> = (props) => {
   });
 
   const submitInput = () => {
-    const fileInput = document.getElementById('file');
+    const fileInput = document.getElementById('backgroundImageInput');
 
     if (fileInput != null) {
       fileInput.click();
@@ -46,32 +49,25 @@ const BackgroundImageForm: React.FC<TargetBoxProps> = (props) => {
 
   return(
     <BackgroundImageFormWrapper ref={drop} isActive={isActive}>
+      {
+        isActive ? null :
+          <CloseModalWrapper onClick={cancel}>
+            <CloseIcon/>
+          </CloseModalWrapper>
+      }
       <BackgroundImageFormCaption>
-        <div>
-          <CardContent>
-            {
-              isActive ?
-                <Typography gutterBottom={true} variant={'h5'} component={'h2'}>
-                  Release to drop
-                </Typography> :
-                <Typography gutterBottom={true} variant={'h5'} component={'h2'}>
-                  Drag file here
-                </Typography>
+          <CardHeader
+            title={isActive ?
+              'Release to drop':
+              <>
+                Drag file here or choose
+                <IconButton onClick={submitInput}>
+                  <FolderOpen/>
+                </IconButton>
+              </>
             }
-          </CardContent>
-          {
-            isActive ? null :
-              <CardActions>
-                <Button onClick={submitInput}>
-                  Choose
-                </Button>
-                <Button onClick={cancel}>
-                  Close
-                </Button>
-              </CardActions>
-          }
-        </div>
-        <input onChange={submit} id={'file'} hidden={true} type={'file'}/>
+          />
+        <input onChange={submit} id={'backgroundImageInput'} hidden={true} type={'file'}/>
       </BackgroundImageFormCaption>
     </BackgroundImageFormWrapper>
   )

@@ -1,7 +1,13 @@
 import { initialData } from '../../initialData';
 import { NewNote, Note, Notes } from '../../store/notes/types';
 import { NewNotesSectionData } from '../../store/notesSections/types';
-import { NOTES, NOTES_SECTIONS, IDS_COUNTER } from '../../store/types';
+import {
+  NOTES,
+  NOTES_SECTIONS,
+  IDS_COUNTER,
+  BACKGROUND_IMAGE,
+} from '../../store/types';
+import { openDB } from 'idb';
 
 const NOTES_IRI = 'notes/';
 const NOTES_SECTIONS_IRI = 'sections/';
@@ -17,6 +23,10 @@ export const initialize = () => {
 
   if (localStorage.getItem(IDS_COUNTER) === null) {
     localStorage.setItem(IDS_COUNTER, JSON.stringify(initialData.idsCounter));
+  }
+
+  if (localStorage.getItem(BACKGROUND_IMAGE) === null) {
+    localStorage.setItem(BACKGROUND_IMAGE, JSON.stringify(initialData.backgroundImage));
   }
 };
 
@@ -161,6 +171,68 @@ export const moveNote = (dragNoteId: string, hoverNoteId: string, targetNotesSec
   };
 };
 
+export const saveImage = (image: File) => {
+  // TODO: use promise. For example see https://github.com/jakearchibald/idb library
+  const request = indexedDB.open('backgroundImage', 1);
+
+  request.onupgradeneeded = () => {
+    const db = request.result;
+
+    if (!db.objectStoreNames.contains('image')) {
+      db.createObjectStore('image');
+    }
+  };
+
+  request.onsuccess = () => {
+    const db = request.result;
+    const transaction = db.transaction('image', 'readwrite');
+
+    transaction.objectStore('image').put(image, 'bgImage');
+
+    db.onerror = function (event) {
+      console.log("Error creating/accessing IndexedDB database");
+    };
+  }
+};
+
+export const getImage = async () => {
+  const db = await openDB('backgroundImage', 1);
+  const image1 = await db.get('image', 'bgImage');
+  console.log(image1);
+
+
+
+  return new Promise((resolve, reject) => {
+    const request = indexedDB.open('backgroundImage', 1);
+
+    request.onsuccess = () => {
+      const db = request.result;
+      const transaction = db.transaction(['image'], 'readonly');
+      const store = transaction.objectStore('image');
+
+      store.get('bgImage').onsuccess = (event: any) => {
+        if (event.target !== null) {
+          console.log(event.target.result);
+        }
+
+        resolve({url: URL.createObjectURL(event.target.result)});
+      };
+
+      db.onerror = function (event) {
+        console.log('Error creating/accessing IndexedDB database');
+        reject();
+      };
+    };
+  });
+
+
+
+  // console.log(image);
+
+
+  // return getItem(BACKGROUND_IMAGE);
+};
+
 export default {
   initialize,
   getItem,
@@ -171,4 +243,6 @@ export default {
   removeNote,
   editNote,
   moveNote,
+  saveImage,
+  getImage,
 }

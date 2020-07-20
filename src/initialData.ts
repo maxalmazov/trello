@@ -57,4 +57,7 @@ export const initialData = {
     lastNotesSectionId: 2,
     lastNoteId: 3,
   },
+  backgroundImage: {
+    url: '',
+  },
 };

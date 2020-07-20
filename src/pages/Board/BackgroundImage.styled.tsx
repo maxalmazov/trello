@@ -1,5 +1,5 @@
-import styled from '../../theme';
-import { Modal } from '@material-ui/core';
+import styled, { theme } from '../../theme';
+import { Card, IconButton, Modal } from '@material-ui/core';
 
 export const BackgroundImageWrapper = styled.div<{ backgroundImage?: string }>`
 
@@ -14,16 +14,25 @@ export const BackgroundImageFormModal = styled(Modal)`
 
 export const BackgroundImageFormWrapper = styled.div<{ isActive: boolean }>`
   display: flex;
+  flex-direction: column;
   height: 100vh;
   width: 100vw;
   align-items: center;
   justify-content: center;
   outline: ${props => props.isActive ? '3px dashed black' : '2px dashed black'};
   outline-offset: ${props => props.isActive ? '-15px' : '-10px'};
-  opacity: ${props => props.isActive ? 0.5 : 1};
-  background-color: ${props => props.isActive ? 'white' : ''};
 `;
 
-export const BackgroundImageFormCaption = styled.div`
+export const BackgroundImageFormCaption = styled(Card)`
+  align-items: center;
+`;
 
+export const CloseModalWrapper = styled(IconButton)`
+  && {
+    background-color: ${theme.white};
+    margin-bottom: 5px;
+    &:hover {
+      background-color: ${theme.whiteDarkened10};
+    }
+  }
 `;

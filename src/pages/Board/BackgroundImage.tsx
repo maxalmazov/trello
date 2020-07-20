@@ -1,8 +1,9 @@
 import React, {
   ChangeEvent,
   useCallback,
-  useState
+  useState,
 } from 'react';
+import { useDispatch } from 'react-redux';
 import { IconButton} from '@material-ui/core';
 import { Wallpaper } from '@material-ui/icons';
 
@@ -12,8 +13,10 @@ import {
 } from './BackgroundImage.styled';
 import { DropTargetMonitor } from 'react-dnd';
 import BackgroundImageForm from './BackgroundImageForm';
+import { saveBackgroundImage } from '../../store/backgroundImage/actions';
 
 const BackgroundImage: React.FC = () => {
+  const dispatch = useDispatch();
   const [open, setOpen] = useState(false);
 
   const handleOpen = () => {
@@ -36,17 +39,15 @@ const BackgroundImage: React.FC = () => {
   );
 
   const handleFileForm = (event: ChangeEvent<HTMLInputElement>) => {
-    // @ts-ignore
-    if (null !== event.target.files[0]) {
-      // @ts-ignore
+    if (event.target.files && event.target.files[0] !== null){
       saveImage(event.target.files[0])
     }
-
   };
 
   const saveImage = (image: File) => {
     handleClose();
-    console.log(image);
+
+    dispatch(saveBackgroundImage(image));
   };
 
   return(

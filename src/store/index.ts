@@ -11,6 +11,7 @@ import { composeWithDevTools } from 'redux-devtools-extension';
 
 import notes from './notes/reducer';
 import notesSections from './notesSections/reducer';
+import backgroundImage from './backgroundImage/reducer';
 import { ActionTypes as NotesActionTypes } from './notes/types';
 import { ActionTypes as NotesSectionsActionTypes } from './notesSections/types';
 
@@ -25,6 +26,7 @@ const middleware = [thunk];
 const reducer: Reducer = combineReducers({
   notes,
   notesSections,
+  backgroundImage,
 });
 
 export const rootReducer = undoable(reducer, {
