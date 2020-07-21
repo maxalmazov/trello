@@ -16,7 +16,6 @@ const HomeComponent: React.FC = () => {
 
   useEffect(() => {
     dispatch(loadBackgroundImage());
-    console.log('here');
   }, []);
 
   return(

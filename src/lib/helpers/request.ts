@@ -187,7 +187,6 @@ export const saveImage = async (newImage: File) => {
   await db.put('image', newImage, 'bgImage');
 
   const image = await db.get('image', 'bgImage');
-  console.log(image);
 
   return {
     url: URL.createObjectURL(image)
